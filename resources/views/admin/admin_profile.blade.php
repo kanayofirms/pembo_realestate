@@ -49,18 +49,27 @@
 
                                 <h6 class="card-title">Profile Update</h6>
 
-                                <form class="forms-sample" action="" method="POST">
+                                <form class="forms-sample" action="{{ url('admin_profile/update') }}" method="POST">
+                                    {{ @csrf_field() }}
                                     <div class="mb-3">
                                         <label class="form-label">Name</label>
-                                        <input type="text" class="form-control" placeholder="Name" name="name">
+                                        <input type="text" class="form-control" placeholder="Name" name="name"
+                                            value="{{ $getRecord->name }}">
                                     </div>
                                     <div class="mb-3">
                                         <label class="form-label">Username</label>
-                                        <input type="text" class="form-control" placeholder="Username" name="username">
+                                        <input type="text" class="form-control" placeholder="Username" name="username"
+                                            value="{{ $getRecord->username }}">
                                     </div>
                                     <div class="mb-3">
                                         <label class="form-label">Email address</label>
-                                        <input type="email" class="form-control" placeholder="Email" name="email">
+                                        <input type="email" class="form-control" placeholder="Email" name="email"
+                                            value="{{ $getRecord->email }}">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label">Phone</label>
+                                        <input type="text" class="form-control" placeholder="Phone" name="phone"
+                                            value="{{ $getRecord->phone }}">
                                     </div>
                                     <div class="mb-3">
                                         <label class="form-label">Password</label>
@@ -72,15 +81,17 @@
                                     </div>
                                     <div class="mb-3">
                                         <label class="form-label">Address</label>
-                                        <input type="text" class="form-control" placeholder="Address" name="address">
+                                        <input type="text" class="form-control" placeholder="Address"
+                                            name="address"value="{{ $getRecord->address }}">
                                     </div>
                                     <div class="mb-3">
                                         <label class="form-label">About</label>
-                                        <textarea name="about" class="form-control" type="text" placeholder="About"></textarea>
+                                        <textarea name="about" class="form-control" type="text" placeholder="About">{{ $getRecord->about }}</textarea>
                                     </div>
                                     <div class="mb-3">
                                         <label class="form-label">Website</label>
-                                        <input type="text" class="form-control" placeholder="Website" name="website">
+                                        <input type="text" class="form-control" placeholder="Website" name="website"
+                                            value="{{ $getRecord->website }}">
                                     </div>
 
                                     <button type="submit" class="btn btn-primary me-2">Submit</button>
