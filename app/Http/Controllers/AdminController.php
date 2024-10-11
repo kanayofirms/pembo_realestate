@@ -43,11 +43,24 @@ class AdminController extends Controller
         $user->username = trim($request->username);
         $user->email = trim($request->email);
         $user->phone = trim($request->phone);
-        // $user->password = trim($request->password);
+
+        if (!empty($request->password)) {
+            $user->password = Hash::make($request->password);
+        }
+
+        if (!empty($request->file('photo'))) {
+            $file = $request->file('photo');
+            $randomStr = Str::random(30);
+            $filename = $randomStr . '.' . $file->getClientOriginalExtension();
+            $file->move('upload/', $filename);
+            $user->photo = $filename;
+        }
         // $user->photo = trim($request->photo);
         $user->address = trim($request->address);
         $user->about = trim($request->about);
         $user->website = trim($request->website);
         $user->save();
+
+        return redirect('admin/profile')->with('success', "Profile Updated Successfully!");
     }
 }
