@@ -31,7 +31,8 @@ class AdminController extends Controller
 
     public function admin_profile(Request $request)
     {
-        return view('admin.admin_profile');
+        $data['getRecord'] = User::find(Auth::user()->id);
+        return view('admin.admin_profile', $data);
     }
 
     public function update(Request $request)
