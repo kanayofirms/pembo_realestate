@@ -3,6 +3,8 @@
     <div class="page-content">
 
 
+        @include('_message')
+
         <div class="row profile-body">
             <!-- left wrapper start -->
             <div class="d-none d-md-block col-md-4 col-xl-3 left-wrapper">
@@ -49,7 +51,8 @@
 
                                 <h6 class="card-title">Profile Update</h6>
 
-                                <form class="forms-sample" action="{{ url('admin_profile/update') }}" method="POST">
+                                <form class="forms-sample" action="{{ url('admin_profile/update') }}" method="POST"
+                                    enctype="multipart/form-data">
                                     {{ @csrf_field() }}
                                     <div class="mb-3">
                                         <label class="form-label">Name</label>
@@ -65,6 +68,7 @@
                                         <label class="form-label">Email address</label>
                                         <input type="email" class="form-control" placeholder="Email" name="email"
                                             value="{{ $getRecord->email }}">
+                                        <span style="color:red;">{{ $errors->first('email') }}</span>
                                     </div>
                                     <div class="mb-3">
                                         <label class="form-label">Phone</label>
@@ -74,10 +78,16 @@
                                     <div class="mb-3">
                                         <label class="form-label">Password</label>
                                         <input type="password" class="form-control" placeholder="Password" name="password">
+                                        (Leave Blank If You Are Not Changing This Password!)
                                     </div>
                                     <div class="mb-3">
                                         <label class="form-label">Profile Image</label>
                                         <input type="file" class="form-control" name="photo">
+                                        @if (!empty($getRecord->photo))
+                                            <img src="{{ asset('upload/' . $getRecord->photo) }}"
+                                                style="width: 10%; height: 10%;">
+                                        @endif
+
                                     </div>
                                     <div class="mb-3">
                                         <label class="form-label">Address</label>
