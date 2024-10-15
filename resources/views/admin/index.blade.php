@@ -175,34 +175,11 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="d-flex justify-content-between align-items-baseline mb-2">
-                            <h6 class="card-title mb-0">Monthly sales</h6>
-                            <div class="dropdown mb-2">
-                                <a type="button" id="dropdownMenuButton4" data-bs-toggle="dropdown"
-                                    aria-haspopup="true" aria-expanded="false">
-                                    <i class="icon-lg text-muted pb-3px" data-feather="more-horizontal"></i>
-                                </a>
-                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton4">
-                                    <a class="dropdown-item d-flex align-items-center" href="javascript:;"><i
-                                            data-feather="eye" class="icon-sm me-2"></i> <span
-                                            class="">View</span></a>
-                                    <a class="dropdown-item d-flex align-items-center" href="javascript:;"><i
-                                            data-feather="edit-2" class="icon-sm me-2"></i> <span
-                                            class="">Edit</span></a>
-                                    <a class="dropdown-item d-flex align-items-center" href="javascript:;"><i
-                                            data-feather="trash" class="icon-sm me-2"></i> <span
-                                            class="">Delete</span></a>
-                                    <a class="dropdown-item d-flex align-items-center" href="javascript:;"><i
-                                            data-feather="printer" class="icon-sm me-2"></i> <span
-                                            class="">Print</span></a>
-                                    <a class="dropdown-item d-flex align-items-center" href="javascript:;"><i
-                                            data-feather="download" class="icon-sm me-2"></i> <span
-                                            class="">Download</span></a>
-                                </div>
-                            </div>
+                            <h6 class="card-title mb-0">Monthly Users</h6>
+
                         </div>
-                        <p class="text-muted">Sales are activities related to selling or the number of goods or
-                            services sold in a given time period.</p>
-                        <div id="monthlySalesChart"></div>
+
+                        <div id="monthlyUsersChart"></div>
                     </div>
                 </div>
             </div>
@@ -418,4 +395,126 @@
         </div> <!-- row -->
 
     </div>
+@endsection
+
+@section('script')
+    <script type="text/javascript">
+        $(function() {
+            'use strict'
+
+
+
+            var colors = {
+                primary: "#6571ff",
+                secondary: "#7987a1",
+                success: "#05a34a",
+                info: "#66d1d1",
+                warning: "#fbbc06",
+                danger: "#ff3366",
+                light: "#e9ecef",
+                dark: "#060c17",
+                muted: "#7987a1",
+                gridBorder: "rgba(77, 138, 240, .15)",
+                bodyColor: "#b8c3d9",
+                cardBg: "#0c1427"
+            }
+
+            var fontFamily = "'Roboto', Helvetica, sans-serif"
+
+            // Monthly Users Chart
+            if ($('#monthlyUsersChart').length) {
+                var options = {
+                    chart: {
+                        type: 'bar',
+                        height: '318',
+                        parentHeightOffset: 0,
+                        foreColor: colors.bodyColor,
+                        background: colors.cardBg,
+                        toolbar: {
+                            show: false
+                        },
+                    },
+                    theme: {
+                        mode: 'light'
+                    },
+                    tooltip: {
+                        theme: 'light'
+                    },
+                    colors: [colors.primary],
+                    fill: {
+                        opacity: .9
+                    },
+                    grid: {
+                        padding: {
+                            bottom: -4
+                        },
+                        borderColor: colors.gridBorder,
+                        xaxis: {
+                            lines: {
+                                show: true
+                            }
+                        }
+                    },
+                    series: [{
+                        name: 'Users',
+                        data: @json($counts)
+                    }],
+                    xaxis: {
+                        type: 'datetime',
+                        categories: @json($months),
+                        axisBorder: {
+                            color: colors.gridBorder,
+                        },
+                        axisTicks: {
+                            color: colors.gridBorder,
+                        },
+                    },
+                    yaxis: {
+                        title: {
+                            text: 'Number of Sales',
+                            style: {
+                                size: 9,
+                                color: colors.muted
+                            }
+                        },
+                    },
+                    legend: {
+                        show: true,
+                        position: "top",
+                        horizontalAlign: 'center',
+                        fontFamily: fontFamily,
+                        itemMargin: {
+                            horizontal: 8,
+                            vertical: 0
+                        },
+                    },
+                    stroke: {
+                        width: 0
+                    },
+                    dataLabels: {
+                        enabled: true,
+                        style: {
+                            fontSize: '10px',
+                            fontFamily: fontFamily,
+                        },
+                        offsetY: -27
+                    },
+                    plotOptions: {
+                        bar: {
+                            columnWidth: "50%",
+                            borderRadius: 4,
+                            dataLabels: {
+                                position: 'top',
+                                orientation: 'vertical',
+                            }
+                        },
+                    },
+                }
+
+                var apexBarChart = new ApexCharts(document.querySelector("#monthlyUsersChart"), options);
+                apexBarChart.render();
+            }
+        });
+        // Monthly Users Chart - END
+    </script>
 @endsection
