@@ -42,7 +42,7 @@
                              <a href="pages/email/read.html" class="nav-link">Read</a>
                          </li>
                          <li class="nav-item">
-                             <a href="pages/email/compose.html" class="nav-link">Compose</a>
+                             <a href="{{ url('admin/email/compose') }}" class="nav-link">Compose</a>
                          </li>
                      </ul>
                  </div>
