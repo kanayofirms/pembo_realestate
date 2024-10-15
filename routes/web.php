@@ -3,6 +3,7 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AgentController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\EmailController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -28,6 +29,7 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::post('admin_profile/update', [AdminController::class, 'update']);
     Route::get('admin/users', [AdminController::class, 'users']);
     Route::get('admin/users/view/{id}', [AdminController::class, 'view']);
+    Route::get('admin/email/compose', [EmailController::class, 'compose']);
 
 });
 
