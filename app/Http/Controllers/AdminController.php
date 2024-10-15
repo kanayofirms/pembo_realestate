@@ -12,7 +12,12 @@ class AdminController extends Controller
 {
     public function AdminDashboard()
     {
-        return view('admin.index');
+        $user = User::selectRaw('count(id) as count, DATE_FORMAT(created_at, "%Y-%m") as month')->groupBy('month')->orderBy('month', 'asc')->get();
+
+        $data['months'] = $user->pluck('month');
+        $data['counts'] = $user->pluck('count');
+
+        return view('admin.index', $data);
     }
 
     public function AdminLogout(Request $request)
@@ -70,5 +75,11 @@ class AdminController extends Controller
     {
         $data['getRecord'] = User::getRecord();
         return view('admin.users.list', $data);
+    }
+
+    public function view($id)
+    {
+        $data['getRecord'] = User::find($id);
+        return view('admin.users.view', $data);
     }
 }
