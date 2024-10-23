@@ -10,14 +10,14 @@ use Mail;
 
 class EmailController extends Controller
 {
-    public function compose()
+    public function email_compose()
     {
         // $data['getEmail'] = User::where('role', '=', array(['agent', 'user']))->get();
         $data['getEmail'] = User::whereIn('role', ['agent', 'user'])->get();
         return view('admin.email.compose', $data);
     }
 
-    public function post(Request $request)
+    public function email_post(Request $request)
     {
         // dd($request->all());
         $save = new ComposeEmailModel;
@@ -36,7 +36,7 @@ class EmailController extends Controller
         return redirect('admin/email/compose')->with('success', "Email Successfully Sent!");
     }
 
-    public function sent(Request $request)
+    public function email_sent(Request $request)
     {
         $data['getRecord'] = ComposeEmailModel::get();
         return view('admin.email.send', $data);
