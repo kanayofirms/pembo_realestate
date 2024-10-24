@@ -127,34 +127,34 @@
                                             <a href=""
                                                 onclick="return confirm('Are you sure you want to delete?');"
                                                 class="btn btn-outline-primary" id="getDeleteUrl" ">Delete</a>
-                                                        </div>
-                                                        <div class="btn-group me-2 d-none d-xl-block">
-                                                            <button class="btn btn-outline-primary dropdown-toggle"
-                                                                data-bs-toggle="dropdown" type="button">Order by <span
-                                                                    class="caret"></span></button>
-                                                            <div class="dropdown-menu" role="menu">
-                                                                <a class="dropdown-item" href="#">Date</a>
-                                                                <a class="dropdown-item" href="#">From</a>
-                                                                <a class="dropdown-item" href="#">Subject</a>
-                                                                <div class="dropdown-divider"></div>
-                                                                <a class="dropdown-item" href="#">Size</a>
+                                                                    </div>
+                                                                    <div class="btn-group me-2 d-none d-xl-block">
+                                                                        <button class="btn btn-outline-primary dropdown-toggle"
+                                                                            data-bs-toggle="dropdown" type="button">Order by <span
+                                                                                class="caret"></span></button>
+                                                                        <div class="dropdown-menu" role="menu">
+                                                                            <a class="dropdown-item" href="#">Date</a>
+                                                                            <a class="dropdown-item" href="#">From</a>
+                                                                            <a class="dropdown-item" href="#">Subject</a>
+                                                                            <div class="dropdown-divider"></div>
+                                                                            <a class="dropdown-item" href="#">Size</a>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="d-flex align-items-center justify-content-end flex-grow-1">
+                                                                    <span class="me-2">1-10 of 253</span>
+                                                                    <div class="btn-group">
+                                                                        <button class="btn btn-outline-secondary btn-icon" type="button"><i
+                                                                                data-feather="chevron-left"></i></button>
+                                                                        <button class="btn btn-outline-secondary btn-icon" type="button"><i
+                                                                                data-feather="chevron-right"></i></button>
+                                                                    </div>
+                                                                </div>
                                                             </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="d-flex align-items-center justify-content-end flex-grow-1">
-                                                        <span class="me-2">1-10 of 253</span>
-                                                        <div class="btn-group">
-                                                            <button class="btn btn-outline-secondary btn-icon" type="button"><i
-                                                                    data-feather="chevron-left"></i></button>
-                                                            <button class="btn btn-outline-secondary btn-icon" type="button"><i
-                                                                    data-feather="chevron-right"></i></button>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="email-list">
+                                                            <div class="email-list">
 
-                                                    <!-- email list item -->
-                                                        @foreach ($getRecord as $value)
+                                                                <!-- email list item -->
+                                                     @foreach ($getRecord as $value)
                                                 <div class="email-list-item email-list-item--unread">
                                                     <div class="email-list-actions">
                                                         <div class="form-check">
@@ -165,7 +165,8 @@
                                                         <a class="favorite" href="javascript:;"><span><i
                                                                     data-feather="star"></i></span></a>
                                                     </div>
-                                                    <a href="" class="email-list-detail">
+                                                    <a href="{{ url('admin/email/read/' . $value->id) }}"
+                                                        class="email-list-detail">
                                                         <div class="content">
                                                             <span class="from">{{ $value->subject }}</span>
                                                             <p class="msg">{{ $value->descriptions }}</p>
