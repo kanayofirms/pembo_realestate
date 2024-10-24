@@ -42,6 +42,7 @@ class EmailController extends Controller
         return view('admin.email.send', $data);
     }
 
+
     public function email_sent_delete(Request $request)
     {
         if (!empty($request->id)) {
@@ -55,6 +56,12 @@ class EmailController extends Controller
         }
 
         return redirect()->back()->with('success', "Sent Email Successfully Deleted.");
+    }
+
+    public function email_read($id, Request $request)
+    {
+        $data['getRecord'] = ComposeEmailModel::find($id);
+        return view('admin.email.read', $data);
     }
 }
 
