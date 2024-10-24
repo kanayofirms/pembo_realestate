@@ -33,6 +33,7 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::get('admin/email/sent', [EmailController::class, 'email_sent']);
     Route::get('admin/email_sent', [EmailController::class, 'email_sent_delete']);
     Route::get('admin/email/read/{id}', [EmailController::class, 'email_read']);
+    Route::get('admin/email/read_delete/{id}', [EmailController::class, 'email_read_delete']);
     Route::post('admin/email/post', [EmailController::class, 'email_post']);
 
 });
