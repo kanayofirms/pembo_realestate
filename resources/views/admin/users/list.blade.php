@@ -14,46 +14,48 @@
                 <div class="card">
                     <div class="card-body">
                         <h6 class="card-title">Search Users</h6>
-                        <form action="">
+                        <form action="" method="GET">
                             <div class="row">
                                 <div class="col-sm-2">
                                     <div class="mb-3">
                                         <label for="" class="form-label">Id</label>
-                                        <input type="text" name="" class="form-control" placeholder="Enter id">
+                                        <input type="text" name="id" class="form-control"
+                                            value="{{ Request()->id }}" placeholder="Enter id">
                                     </div>
                                 </div>
                                 <div class="col-sm-3">
                                     <div class="mb-3">
                                         <label for="" class="form-label">Name</label>
-                                        <input type="text" name="name" class="form-control" placeholder="Enter name">
+                                        <input type="text" name="name" class="form-control"
+                                            value="{{ Request()->name }}" placeholder="Enter name">
                                     </div>
                                 </div>
                                 <div class="col-sm-3">
                                     <div class="mb-3">
                                         <label for="" class="form-label">Username</label>
-                                        <input type="text" name="username" class="form-control"
-                                            placeholder="Enter username">
+                                        <input type="text" name="username" value="{{ Request()->username }}"
+                                            class="form-control" placeholder="Enter username">
                                     </div>
                                 </div>
                                 <div class="col-sm-4">
                                     <div class="mb-3">
                                         <label for="" class="form-label">Email Id</label>
-                                        <input type="text" name="email" class="form-control"
-                                            placeholder="Enter email id">
+                                        <input type="text" name="email" value="{{ Request()->email }}"
+                                            class="form-control" placeholder="Enter email id">
                                     </div>
                                 </div>
                                 <div class="col-sm-4">
                                     <div class="mb-3">
                                         <label for="" class="form-label">Phone Number</label>
-                                        <input type="text" name="phone" class="form-control"
-                                            placeholder="Enter phone number">
+                                        <input type="text" name="phone" value="{{ Request()->phone }}"
+                                            class="form-control" placeholder="Enter phone number">
                                     </div>
                                 </div>
                                 <div class="col-sm-4">
                                     <div class="mb-3">
                                         <label for="" class="form-label">Address</label>
-                                        <input type="text" name="address" class="form-control"
-                                            placeholder="Enter address">
+                                        <input type="text" name="address" value="{{ Request()->address }}"
+                                            class="form-control" placeholder="Enter address">
                                     </div>
                                 </div>
                                 <div class="col-sm-2">
@@ -61,9 +63,12 @@
                                         <label class="form-label">Role</label>
                                         <select class="form-control" name="role">
                                             <option value="">Select role</option>
-                                            <option value="admin">Admin</option>
-                                            <option value="agent">Agent</option>
-                                            <option value="user">User</option>
+                                            <option value="admin" {{ Request()->role === 'admin' ? 'selected' : '' }}>
+                                                Admin</option>
+                                            <option value="agent" {{ Request()->role === 'agent' ? 'selected' : '' }}>
+                                                Agent</option>
+                                            <option value="user" {{ Request()->role === 'user' ? 'selected' : '' }}>User
+                                            </option>
                                         </select>
                                     </div>
                                 </div>
@@ -72,8 +77,11 @@
                                         <label class="form-label">Status</label>
                                         <select class="form-control" name="status">
                                             <option value="">Select status</option>
-                                            <option value="active">Active</option>
-                                            <option value="inactive">Inactive</option>
+                                            <option value="active" {{ Request()->status === 'active' ? 'selected' : '' }}>
+                                                Active</option>
+                                            <option value="inactive"
+                                                {{ Request()->status === 'inactive' ? 'selected' : '' }}>Inactive
+                                            </option>
                                         </select>
                                     </div>
                                 </div>
@@ -107,7 +115,7 @@
                                         <th>Phone</th>
                                         <th>Website</th>
                                         <th>Address</th>
-                                        <th>About</th>
+                                        {{-- <th>About</th> --}}
                                         <th>Role</th>
                                         <th>Status</th>
                                         <th>Created At</th>
@@ -115,7 +123,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($getRecord as $value)
+                                    @forelse ($getRecord as $value)
                                         <tr class="table-info text-dark">
                                             <td>{{ $value->id }}</td>
                                             <td>{{ $value->name }}</td>
@@ -130,7 +138,7 @@
                                             <td>{{ $value->phone }}</td>
                                             <td>{{ $value->website }}</td>
                                             <td>{{ $value->address }}</td>
-                                            <td>{{ $value->about }}</td>
+                                            {{-- <td>{{ $value->about }}</td> --}}
                                             <td>
                                                 @if ($value->role === 'admin')
                                                     <span class="badge bg-info">Admin</span>
@@ -161,7 +169,11 @@
                                             </td>
 
                                         </tr>
-                                    @endforeach
+                                    @empty
+                                        <tr>
+                                            <td colspan="100%">No Record Found.</td>
+                                        </tr>
+                                    @endforelse
                                 </tbody>
                             </table>
                         </div>
