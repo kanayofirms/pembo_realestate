@@ -101,7 +101,15 @@
             <div class="col-lg-12 stretch-card">
                 <div class="card">
                     <div class="card-body">
-                        <h4 class="card-title">Users List</h4>
+
+                        <div class="d-flex justify-content-between align-items-center flex-wrap">
+                            <h4 class="card-title">Users List</h4>
+                            <div class="d-flex align-items-center">
+                                <a href="{{ url('admin/users/add') }}" class="btn btn-primary">
+                                    Add User
+                                </a>
+                            </div>
+                        </div>
 
                         <div class="table-responsive pt-3">
                             <table class="table table-bordered">
