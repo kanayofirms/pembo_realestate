@@ -82,4 +82,9 @@ class AdminController extends Controller
         $data['getRecord'] = User::find($id);
         return view('admin.users.view', $data);
     }
+
+    public function admin_add_users(Request $request)
+    {
+        return view('admin.users.add');
+    }
 }
