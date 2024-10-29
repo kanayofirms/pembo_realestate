@@ -49,4 +49,7 @@ Route::middleware(['auth', 'role:agent'])->group(function () {
 
 });
 
+Route::get('set_new_password/{token}', [AdminController::class, 'set_new_password']);
+// Route::post('set_new_password/{token}', [AdminController::class, 'set_new_password_post']);
+
 Route::get('admin/login', [AdminController::class, 'AdminLogin'])->name('admin.login');
