@@ -123,18 +123,18 @@ class AdminController extends Controller
         return view('auth.reset_password', $data);
     }
 
-    // public function set_new_password_post($token, ResetPassword $request)
-    // {
-    //     $user = User::where('remember_token', '=', $token);
-    //     if ($user->count() == 0) {
-    //         abort(403);
-    //     }
-    //     $user = $user->first();
-    //     $user->password = Hash::make($request->password);
-    //     $user->remember_token = Str::random(50);
-    //     $user->status = 'active';
-    //     $user->save();
+    public function set_new_password_post($token, ResetPassword $request)
+    {
+        $user = User::where('remember_token', '=', $token);
+        if ($user->count() == 0) {
+            abort(403);
+        }
+        $user = $user->first();
+        $user->password = Hash::make($request->password);
+        $user->remember_token = Str::random(50);
+        $user->status = 'active';
+        $user->save();
 
-    //     return redirect('admin/login')->with('success', "New Password Successfully Set.");
-    // }
+        return redirect('admin/login')->with('success', "New Password Successfully Set.");
+    }
 }
