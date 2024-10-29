@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Mail\RegisteredMail;
 use Auth;
 use Hash;
 use Str;
+use Mail;
 
 class AdminController extends Controller
 {
@@ -106,8 +108,10 @@ class AdminController extends Controller
         $user->phone = trim($request->phone);
         $user->role = trim($request->role);
         $user->status = trim($request->status);
-
+        $user->remember_token = Str::random(50);
         $user->save();
+
+        Mail::to($user->email)->send(new RegisteredMail($user));
 
         return redirect('admin/users')->with('success', "Record successfully added.");
     }
