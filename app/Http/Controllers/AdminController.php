@@ -86,6 +86,25 @@ class AdminController extends Controller
         return view('admin.users.view', $data);
     }
 
+    public function edit($id)
+    {
+        $data['getRecord'] = User::find($id);
+        return view('admin.users.edit', $data);
+    }
+
+    public function edit_post($id, Request $request)
+    {
+        $save = User::find($id);
+        $save->name = trim($request->name);
+        $save->username = trim($request->username);
+        $save->phone = trim($request->phone);
+        $save->role = trim($request->role);
+        $save->status = trim($request->status);
+        $save->save();
+
+        return redirect('admin/users')->with('success', "Record Successfully Updated.");
+    }
+
     public function admin_add_users(Request $request)
     {
         return view('admin.users.add');
@@ -137,4 +156,13 @@ class AdminController extends Controller
 
         return redirect('admin/login')->with('success', "New Password Successfully Set.");
     }
+
+    // public function admin_soft_delete($id, Request $request)
+    // {
+    //     $softDelete = User::find($id);
+    //     $softDelete->is_delete = 1;
+    //     $softDelete->save();
+
+    //     return redirect('admin/users')->with('success', "Record successfully soft deleted.");
+    // }
 }
