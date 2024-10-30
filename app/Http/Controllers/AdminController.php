@@ -157,12 +157,12 @@ class AdminController extends Controller
         return redirect('admin/login')->with('success', "New Password Successfully Set.");
     }
 
-    // public function admin_soft_delete($id, Request $request)
-    // {
-    //     $softDelete = User::find($id);
-    //     $softDelete->is_delete = 1;
-    //     $softDelete->save();
+    public function admin_soft_delete($id, Request $request)
+    {
+        $softDelete = User::find($id);
+        $softDelete->is_delete = 1;
+        $softDelete->save();
 
-    //     return redirect('admin/users')->with('success', "Record successfully soft deleted.");
-    // }
+        return redirect('admin/users')->with('success', "Record successfully soft deleted.");
+    }
 }
