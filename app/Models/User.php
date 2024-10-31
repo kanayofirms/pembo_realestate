@@ -82,7 +82,7 @@ class User extends Authenticatable
         }
         // Search end
 
-        $return = $return->paginate(10);
+        $return = $return->paginate(100);
         return $return;
     }
 }
