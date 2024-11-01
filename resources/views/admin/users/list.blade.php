@@ -206,11 +206,18 @@
                                                     @endif
                                                 </td>
                                                 <td>
-                                                    @if ($value->status === 'active')
+                                                    {{-- @if ($value->status === 'active')
                                                         <span class="badge bg-primary">Active</span>
                                                     @else
                                                         <span class="badge bg-danger">Inactive</span>
-                                                    @endif
+                                                    @endif --}}
+                                                    <select name="" class="form-control changeStatus"
+                                                        id="{{ $value->id }}" style="width: 170px;">
+                                                        <option {{ $value->status === 'active' ? 'selected' : '' }}
+                                                            value="active">Active</option>
+                                                        <option {{ $value->status === 'inactive' ? 'selected' : '' }}
+                                                            value="inactive">In Active</option>
+                                                    </select>
                                                 </td>
                                                 <td>{{ date('d-m-Y', strtotime($value->created_at)) }}</td>
                                                 <td>
@@ -288,7 +295,25 @@
                 success: function(response) {
                     alert(response.success);
                 }
-            })
-        })
+            });
+        });
+
+        $('.changeStatus').change(function() {
+            var status_id = $(this).val();
+            var order_id = $(this).attr('id');
+            $.ajax({
+                type: 'GET',
+                url: "{{ url('admin/users/changeStatus') }}",
+                data: {
+                    status_id: status_id,
+                    order_id: order_id
+                },
+                dataType: 'json',
+                success: function(data) {
+                    alert('Status Successfully Changed');
+                    window.location.href = "";
+                }
+            });
+        });
     </script>
 @endsection
