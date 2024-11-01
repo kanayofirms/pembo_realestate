@@ -171,4 +171,13 @@ class AdminController extends Controller
 
         return redirect('admin/users')->with('success', "Record successfully soft deleted.");
     }
+
+    public function admin_users_update(Request $request)
+    {
+        $getRecord = User::find($request->input('edit_id'));
+        $getRecord->name = $request->input('edit_name');
+        $getRecord->save();
+        $json['success'] = 'Data Updated Successfully';
+        echo json_encode($json);
+    }
 }
