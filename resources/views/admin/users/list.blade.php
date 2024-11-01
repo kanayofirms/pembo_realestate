@@ -170,74 +170,90 @@
                                 </thead>
                                 <tbody>
                                     @forelse ($getRecord as $value)
-                                        <tr class="table-info text-dark">
-                                            <td>{{ $value->id }}</td>
-                                            <td>{{ $value->name }}</td>
-                                            <td>{{ $value->username }}</td>
-                                            <td>{{ $value->email }}</td>
-                                            <td>
-                                                @if (!empty($value->photo))
-                                                    <img src="{{ asset('upload/' . $value->photo) }}"
-                                                        style="width: 100%; height: 100%;">
-                                                @endif
-                                            </td>
-                                            <td>{{ $value->phone }}</td>
-                                            <td>{{ $value->website }}</td>
-                                            <td>{{ $value->address }}</td>
-                                            {{-- <td>{{ $value->about }}</td> --}}
-                                            <td>
-                                                @if ($value->role === 'admin')
-                                                    <span class="badge bg-info">Admin</span>
-                                                @elseif ($value->role === 'agent')
-                                                    <span class="badge bg-primary">Agent</span>
-                                                @elseif ($value->role === 'user')
-                                                    <span class="badge bg-success">User</span>
-                                                @endif
-                                            </td>
-                                            <td>
-                                                @if ($value->status === 'active')
-                                                    <span class="badge bg-primary">Active</span>
-                                                @else
-                                                    <span class="badge bg-danger">Inactive</span>
-                                                @endif
-                                            </td>
-                                            <td>{{ date('d-m-Y', strtotime($value->created_at)) }}</td>
-                                            <td>
-                                                <a class="dropdown-item d-flex align-items-center"
-                                                    href="{{ url('admin/users/view/' . $value->id) }}"><svg
-                                                        xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                                        viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                                                        class="feather feather-eye icon-sm me-2">
-                                                        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
-                                                        <circle cx="12" cy="12" r="3"></circle>
-                                                    </svg> <span class="">View</span></a>
+                                        <form class="a_form{{ $value->id }}" method="POST">
 
-                                                <a class="dropdown-item d-flex align-items-center"
-                                                    href="{{ url('admin/users/edit/' . $value->id) }}"><svg
-                                                        xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                                        viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                                                        class="feather feather-edit-2 icon-sm me-2">
-                                                        <path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z">
-                                                        </path>
-                                                    </svg> <span class="">Edit</span></a>
+                                            {{ csrf_field() }}
 
-                                                <a class="dropdown-item d-flex align-items-center"
-                                                    href="{{ url('admin/users/delete/' . $value->id) }}"
-                                                    onclick="return confirm('Are you sure you want to delete?')"><svg
-                                                        xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                                        viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                                                        class="feather feather-trash icon-sm me-2">
-                                                        <polyline points="3 6 5 6 21 6"></polyline>
-                                                        <path
-                                                            d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2">
-                                                        </path>
-                                                    </svg> <span class="">Delete</span></a>
-                                            </td>
+                                            <tr class="table-info text-dark">
+                                                <td>{{ $value->id }}</td>
+                                                <td style="min-width: 150px;">
+                                                    <input type="hidden" name="edit_id" value="{{ $value->id }}">
+                                                    <input type="text" class="form-control" name="edit_name"
+                                                        value="{{ old('name', $value->name) }}">
+                                                    <br>
+                                                    <button type="button" class="btn btn-success submitform"
+                                                        id="{{ $value->id }}">Save</button>
+                                                </td>
+                                                <td>{{ $value->username }}</td>
+                                                <td>{{ $value->email }}</td>
+                                                <td>
+                                                    @if (!empty($value->photo))
+                                                        <img src="{{ asset('upload/' . $value->photo) }}"
+                                                            style="width: 100%; height: 100%;">
+                                                    @endif
+                                                </td>
+                                                <td>{{ $value->phone }}</td>
+                                                <td>{{ $value->website }}</td>
+                                                <td>{{ $value->address }}</td>
+                                                {{-- <td>{{ $value->about }}</td> --}}
+                                                <td>
+                                                    @if ($value->role === 'admin')
+                                                        <span class="badge bg-info">Admin</span>
+                                                    @elseif ($value->role === 'agent')
+                                                        <span class="badge bg-primary">Agent</span>
+                                                    @elseif ($value->role === 'user')
+                                                        <span class="badge bg-success">User</span>
+                                                    @endif
+                                                </td>
+                                                <td>
+                                                    @if ($value->status === 'active')
+                                                        <span class="badge bg-primary">Active</span>
+                                                    @else
+                                                        <span class="badge bg-danger">Inactive</span>
+                                                    @endif
+                                                </td>
+                                                <td>{{ date('d-m-Y', strtotime($value->created_at)) }}</td>
+                                                <td>
+                                                    <a class="dropdown-item d-flex align-items-center"
+                                                        href="{{ url('admin/users/view/' . $value->id) }}"><svg
+                                                            xmlns="http://www.w3.org/2000/svg" width="24"
+                                                            height="24" viewBox="0 0 24 24" fill="none"
+                                                            stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                                            stroke-linejoin="round"
+                                                            class="feather feather-eye icon-sm me-2">
+                                                            <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                                                            <circle cx="12" cy="12" r="3"></circle>
+                                                        </svg> <span class="">View</span></a>
 
-                                        </tr>
+                                                    <a class="dropdown-item d-flex align-items-center"
+                                                        href="{{ url('admin/users/edit/' . $value->id) }}"><svg
+                                                            xmlns="http://www.w3.org/2000/svg" width="24"
+                                                            height="24" viewBox="0 0 24 24" fill="none"
+                                                            stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                                            stroke-linejoin="round"
+                                                            class="feather feather-edit-2 icon-sm me-2">
+                                                            <path
+                                                                d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z">
+                                                            </path>
+                                                        </svg> <span class="">Edit</span></a>
+
+                                                    <a class="dropdown-item d-flex align-items-center"
+                                                        href="{{ url('admin/users/delete/' . $value->id) }}"
+                                                        onclick="return confirm('Are you sure you want to delete?')"><svg
+                                                            xmlns="http://www.w3.org/2000/svg" width="24"
+                                                            height="24" viewBox="0 0 24 24" fill="none"
+                                                            stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                                            stroke-linejoin="round"
+                                                            class="feather feather-trash icon-sm me-2">
+                                                            <polyline points="3 6 5 6 21 6"></polyline>
+                                                            <path
+                                                                d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2">
+                                                            </path>
+                                                        </svg> <span class="">Delete</span></a>
+                                                </td>
+
+                                            </tr>
+                                        </form>
                                     @empty
                                         <tr>
                                             <td colspan="100%">No Record Found.</td>
@@ -256,4 +272,23 @@
             </div>
         </div>
     </div>
+@endsection
+
+@section('script')
+    <script type="text/javascript">
+        $('table').delegate('.submitform', 'click', function() {
+            var id = $(this).attr('id');
+            // alert(id);
+            $.ajax({
+
+                url: "{{ url('admin/users/update') }}",
+                method: "POST",
+                data: $('.a_form' + id).serialize(),
+                dataType: 'json',
+                success: function(response) {
+                    alert(response.success);
+                }
+            })
+        })
+    </script>
 @endsection
