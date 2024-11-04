@@ -48,6 +48,9 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::get('admin/email/read_delete/{id}', [EmailController::class, 'email_read_delete']);
     Route::post('admin/email/post', [EmailController::class, 'email_post']);
 
+    Route::get('admin/my_profile', [AdminController::class, 'my_profile']);
+    Route::post('admin/my_profile/update', [AdminController::class, 'my_profile_update']);
+
 });
 
 Route::middleware(['auth', 'role:agent'])->group(function () {
