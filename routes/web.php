@@ -4,6 +4,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AgentController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\EmailController;
+use App\Http\Controllers\UserTimeController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -51,13 +52,16 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::get('admin/my_profile', [AdminController::class, 'my_profile']);
     Route::post('admin/my_profile/update', [AdminController::class, 'my_profile_update']);
 
+    // User Week Start
+    Route::get('admin/week', [UserTimeController::class, 'week_list']);
+    // User Week End
+
 });
 
 Route::middleware(['auth', 'role:agent'])->group(function () {
     Route::get('agent/dashboard', [AgentController::class, 'AgentDashboard'])->name('agent.dashboard');
     Route::get('agent/logout', [AdminController::class, 'AdminLogout'])->name('admin.logout');
     Route::get('agent/email/inbox', [AdminController::class, 'agent_email_inbox']);
-
 });
 
 Route::get('set_new_password/{token}', [AdminController::class, 'set_new_password']);
