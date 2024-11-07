@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\ResetPassword;
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\ComposeEmailModel;
 use App\Mail\RegisteredMail;
 use Auth;
 use Hash;
@@ -222,5 +223,11 @@ class AdminController extends Controller
         $user->save();
 
         return redirect('admin/my_profile')->with('success', "My Account Successfully Updated.");
+    }
+
+    public function agent_email_inbox(Request $request)
+    {
+        $data['getRecord'] = ComposeEmailModel::getAgentRecord(Auth::user()->id);
+        return view('agent.email.inbox', $data);
     }
 }
