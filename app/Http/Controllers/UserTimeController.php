@@ -55,11 +55,22 @@ class UserTimeController extends Controller
     // Week Time Start
     public function week_time_list(Request $request)
     {
-        return view('admin.week_time.list');
+        $data['getRecord'] = WeekTimeModel::get();
+        return view('admin.week_time.list', $data);
     }
 
     public function week_time_add(Request $request)
     {
         return view('admin.week_time.add');
+    }
+
+    public function week_time_store(Request $request)
+    {
+        // dd($request->all());
+        $save = new WeekTimeModel;
+        $save->name = trim($request->name);
+        $save->save();
+
+        return redirect('admin/week_time')->with('success', "Week Time Added Successfully!");
     }
 }
