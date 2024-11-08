@@ -10,4 +10,9 @@ class UserTimeController extends Controller
     {
         return view('admin.week.list');
     }
+
+    public function week_add(Request $request)
+    {
+        return view('admin.week.add');
+    }
 }
