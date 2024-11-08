@@ -42,4 +42,12 @@ class UserTimeController extends Controller
 
         return redirect('admin/week')->with('success', "Week Updated Successfully.");
     }
+
+    public function week_delete($id, Request $request)
+    {
+        $save = WeekModel::find($id);
+        $save->delete();
+
+        return redirect('admin/week')->with('success', "Week Deleted Successfully.");
+    }
 }
