@@ -55,6 +55,7 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     // User Week Start
     Route::get('admin/week', [UserTimeController::class, 'week_list']);
     Route::get('admin/week/add', [UserTimeController::class, 'week_add']);
+    Route::post('admin/week/add', [UserTimeController::class, 'week_store']);
     // User Week End
 
 });
