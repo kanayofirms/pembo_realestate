@@ -50,4 +50,10 @@ class UserTimeController extends Controller
 
         return redirect('admin/week')->with('success', "Week Deleted Successfully.");
     }
+
+    // Week Time Start
+    public function week_time_list(Request $request)
+    {
+        return view('admin.week_time.list');
+    }
 }
