@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\WeekModel;
+use App\Models\WeekTimeModel;
 
 class UserTimeController extends Controller
 {
@@ -55,5 +56,10 @@ class UserTimeController extends Controller
     public function week_time_list(Request $request)
     {
         return view('admin.week_time.list');
+    }
+
+    public function week_time_add(Request $request)
+    {
+        return view('admin.week_time.add');
     }
 }
