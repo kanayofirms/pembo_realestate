@@ -30,11 +30,12 @@
                                 </div>
                             </div>
                             <div class="row mb-3">
-                                <label class="col-sm-3 col-form-label">Email <span style="color: red;">*</span></label>
+                                <label class="col-sm-3 col-form-label">Email<span style="color: red;">*</span></label>
                                 <div class="col-sm-9">
                                     <input type="email" class="form-control" name="email" autocomplete="off"
-                                        placeholder="Email" value="{{ old('email') }}" required>
-                                    <span style="color: red;">{{ $errors->first('email') }}</span>
+                                        placeholder="Email" value="{{ old('email') }}" onblur="duplicateEmail(this)"
+                                        required>
+                                    <span style="color: red;" class="duplicate_message">{{ $errors->first('email') }}</span>
                                 </div>
                             </div>
                             <div class="row mb-3">
@@ -78,4 +79,33 @@
         </div>
 
     </div>
+@endsection
+
+@section('script')
+    <script type="text/javascript">
+        function duplicateEmail(element) {
+            var email = $(element).val();
+            // alert(email);
+            $.ajax({
+                type: "POST",
+                url: "{{ url('checkemail') }}", //Create Route in admin route
+                data: {
+                    email: email,
+                    _token: "{{ csrf_token() }}"
+                },
+                dataType: "json",
+                success: function(res) {
+                    if (res.exists) {
+                        $(".duplicate_message").html("That email is taken. Try another.");
+
+                    } else {
+                        $(".duplicate_message").html("");
+                    }
+                },
+                error: function(jqXHR, exception) {
+
+                }
+            });
+        }
+    </script>
 @endsection
