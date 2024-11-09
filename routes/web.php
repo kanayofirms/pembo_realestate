@@ -72,6 +72,7 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
 
     // Schedule Start
     Route::get('admin/schedule', [UserTimeController::class, 'admin_schedule']);
+    Route::post('admin/schedule', [UserTimeController::class, 'admin_schedule_update']);
     // Schedule End
 });
 
