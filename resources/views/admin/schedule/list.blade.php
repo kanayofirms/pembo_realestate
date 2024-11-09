@@ -24,53 +24,74 @@
                         </div>
 
                         <div class="table-responsive pt-3">
-                            <table class="table table-bordered">
-                                <thead>
-                                    <tr>
-                                        <th>Week</th>
-                                        <th>Open/Close</th>
-                                        <th>Start Time</th>
-                                        <th>End Time</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach ($weekRecord as $row)
-                                        @php
-                                            $getUserWeek = App\Models\UserTimeModel::getDetail($row->id);
-                                            $open_close = !empty($getUserWeek->status) ? $getUserWeek->status : '';
-                                            $start_time = !empty($getUserWeek->start_time)
-                                                ? $getUserWeek->start_time
-                                                : '';
-                                            $end_time = !empty($getUserWeek->end_time) ? $getUserWeek->end_time : '';
-                                        @endphp
-                                        <tr class="table-info text-dark">
-                                            <td>{{ !empty($row->name) ? $row->name : '' }}</td>
-                                            <td>
-                                                <input type="hidden" value="{{ $row->id }}"
-                                                    name="week[{{ $row->id }}][week_id]">
-                                                <label for="" class="switch">
-                                                    <input type="checkbox" name="week[{{ $row->id }}][status]"
-                                                        id="{{ $row->id }}" {{ !empty($open_close) ? 'checked' : '' }}>
-                                                </label>
-                                            </td>
-                                            <td>
-                                                <select name="week[{{ $row->id }}][start_time]" class="form-control">
-                                                    @foreach ($weekTimeRow as $timeRow1)
-                                                        <option value="">{{ $timeRow1->name }}</option>
-                                                    @endforeach
-                                                </select>
-                                            </td>
-                                            <td>
-                                                <select name="week[{{ $row->id }}][end_time]" class="form-control">
-                                                    @foreach ($weekTimeRow as $timeNow)
-                                                        <option value="">{{ $timeNow->name }}</option>
-                                                    @endforeach
-                                                </select>
-                                            </td>
+                            <form action="{{ url('admin/schedule') }}" method="POST">
+                                {{ csrf_field() }}
+                                <table class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>Week</th>
+                                            <th>Open/Close</th>
+                                            <th>Start Time</th>
+                                            <th>End Time</th>
                                         </tr>
-                                    @endforeach
-                                </tbody>
-                            </table>
+                                    </thead>
+                                    <tbody>
+                                        @foreach ($weekRecord as $row)
+                                            @php
+                                                $getUserWeek = App\Models\UserTimeModel::getDetail($row->id);
+                                                $open_close = !empty($getUserWeek->status) ? $getUserWeek->status : '';
+                                                $start_time = !empty($getUserWeek->start_time)
+                                                    ? $getUserWeek->start_time
+                                                    : '';
+                                                $end_time = !empty($getUserWeek->end_time)
+                                                    ? $getUserWeek->end_time
+                                                    : '';
+                                            @endphp
+                                            <tr class="table-info text-dark">
+                                                <td>{{ !empty($row->name) ? $row->name : '' }}</td>
+                                                <td>
+                                                    <input type="hidden" value="{{ $row->id }}"
+                                                        name="week[{{ $row->id }}][week_id]">
+                                                    <label for="" class="switch">
+                                                        <input type="checkbox" class="change-availability"
+                                                            name="week[{{ $row->id }}][status]"
+                                                            id="{{ $row->id }}"
+                                                            {{ !empty($open_close) ? 'checked' : '' }}>
+                                                    </label>
+                                                </td>
+                                                <td>
+                                                    <select name="week[{{ $row->id }}][start_time]"
+                                                        class="form-control required-{{ $row->id }} show-availability-{{ $row->id }}"
+                                                        style="{{ !empty($open_close) ? '' : 'display:none' }}">
+                                                        <option value="">Select Start Time</option>
+                                                        @foreach ($weekTimeRow as $timeRow1)
+                                                            <option
+                                                                {{ trim($start_time) == trim($timeRow1->name) ? 'selected' : '' }}
+                                                                value="{{ $timeRow1->name }}">
+                                                                {{ $timeRow1->name }}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </td>
+                                                <td>
+                                                    <select name="week[{{ $row->id }}][end_time]"
+                                                        class="form-control required-{{ $row->id }} show-availability-{{ $row->id }}"
+                                                        style="{{ !empty($open_close) ? '' : 'display:none' }}">
+                                                        <option value="">Select End Time</option>
+                                                        @foreach ($weekTimeRow as $timeNow)
+                                                            <option
+                                                                {{ trim($end_time) == trim($timeNow->name) ? 'selected' : '' }}
+                                                                value="{{ $timeNow->name }}">
+                                                                {{ $timeNow->name }}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                                <br>
+                                <button type="submit" class="btn btn-primary me-2" style="float: right;">Update</button>
+                            </form>
                         </div>
                         <div style="padding: 20px; float: right;">
                             {{-- {!! $getRecord->appends(Illuminate\Support\Facades\Request::except('page'))->links() !!} --}}
@@ -82,4 +103,19 @@
             </div>
         </div>
     </div>
+@endsection
+
+@section('script')
+    <script type="text/javascript">
+        $('.change-availability').click(function() {
+            var id = $(this).attr('id');
+            if (this.checked) {
+                $('.show-availability-' + id).show();
+                $('.required-' + id).prop('required', true);
+            } else {
+                $('.show-availability-' + id).hide();
+                $('.required-' + id).prop('required', false);
+            }
+        });
+    </script>
 @endsection
