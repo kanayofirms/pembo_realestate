@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\WeekModel;
 use App\Models\WeekTimeModel;
+use App\Models\UserTimeModel;
 
 class UserTimeController extends Controller
 {
@@ -102,6 +103,9 @@ class UserTimeController extends Controller
     {
         $data['weekRecord'] = WeekModel::get();
         $data['weekTimeRow'] = WeekTimeModel::get();
+        $data['getRecord'] = UserTimeModel::get();
+
+
         return view('admin.schedule.list', $data);
     }
 }
