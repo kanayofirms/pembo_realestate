@@ -70,6 +70,9 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::get('admin/week_time/delete/{id}', [UserTimeController::class, 'week_time_delete']);
     // Week Time End
 
+    // Schedule Start
+    Route::get('admin/schedule', [UserTimeController::class, 'admin_schedule']);
+    // Schedule End
 });
 
 Route::middleware(['auth', 'role:agent'])->group(function () {
