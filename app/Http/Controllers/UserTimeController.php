@@ -79,4 +79,13 @@ class UserTimeController extends Controller
         $data['getRecord'] = WeekTimeModel::find($id);
         return view('admin.week_time.edit', $data);
     }
+
+    public function week_time_update(Request $request, $id)
+    {
+        $save = WeekTimeModel::find($id);
+        $save->name = trim($request->name);
+        $save->save();
+
+        return redirect('admin/week_time')->with('success', "Week Time Updated Successfully.");
+    }
 }
