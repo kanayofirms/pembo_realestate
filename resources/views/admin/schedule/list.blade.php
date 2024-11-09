@@ -35,22 +35,37 @@
                                 </thead>
                                 <tbody>
                                     @foreach ($weekRecord as $row)
+                                        @php
+                                            $getUserWeek = App\Models\UserTimeModel::getDetail($row->id);
+                                            $open_close = !empty($getUserWeek->status) ? $getUserWeek->status : '';
+                                            $start_time = !empty($getUserWeek->start_time)
+                                                ? $getUserWeek->start_time
+                                                : '';
+                                            $end_time = !empty($getUserWeek->end_time) ? $getUserWeek->end_time : '';
+                                        @endphp
                                         <tr class="table-info text-dark">
                                             <td>{{ !empty($row->name) ? $row->name : '' }}</td>
                                             <td>
+                                                <input type="hidden" value="{{ $row->id }}"
+                                                    name="week[{{ $row->id }}][week_id]">
                                                 <label for="" class="switch">
-                                                    <input type="checkbox" name="week">
+                                                    <input type="checkbox" name="week[{{ $row->id }}][status]"
+                                                        id="{{ $row->id }}" {{ !empty($open_close) ? 'checked' : '' }}>
                                                 </label>
                                             </td>
                                             <td>
-                                                @foreach ($weekTimeRow as $timeRow1)
-                                                    <option value="">{{ $timeRow1->name }}</option>
-                                                @endforeach
+                                                <select name="week[{{ $row->id }}][start_time]" class="form-control">
+                                                    @foreach ($weekTimeRow as $timeRow1)
+                                                        <option value="">{{ $timeRow1->name }}</option>
+                                                    @endforeach
+                                                </select>
                                             </td>
                                             <td>
-                                                @foreach ($weekTimeRow as $timeNow)
-                                                    <option value="">{{ $timeNow->name }}</option>
-                                                @endforeach
+                                                <select name="week[{{ $row->id }}][end_time]" class="form-control">
+                                                    @foreach ($weekTimeRow as $timeNow)
+                                                        <option value="">{{ $timeNow->name }}</option>
+                                                    @endforeach
+                                                </select>
                                             </td>
                                         </tr>
                                     @endforeach
