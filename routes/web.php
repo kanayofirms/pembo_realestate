@@ -79,7 +79,7 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
 
     // Notification Start
     Route::get('admin/notification', [NotificationController::class, 'notification_index']);
-    // Route::post('admin/notification_send', [NotificationController::class, 'notification_send']);
+    Route::post('admin/notification_send', [NotificationController::class, 'notification_send']);
     // Notification End
 });
 
