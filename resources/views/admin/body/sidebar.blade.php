@@ -49,6 +49,14 @@
                  </a>
              </li>
 
+             <li class="nav-item nav-category">Notification</li>
+             <li class="nav-item" @if (Request::segment(2) == 'notification') active @endif>
+                 <a href="{{ url('admin/notification') }}" class="nav-link">
+                     <i class="link-icon" data-feather="box"></i>
+                     <span class="link-title">Push Notification</span>
+                 </a>
+             </li>
+
              <li class="nav-item nav-category">web apps</li>
              <li class="nav-item">
                  <a class="nav-link" data-bs-toggle="collapse" href="#emails" role="button" aria-expanded="false"
@@ -97,8 +105,8 @@
                  </div>
              </li>
              <li class="nav-item">
-                 <a class="nav-link" data-bs-toggle="collapse" href="#advancedUI" role="button" aria-expanded="false"
-                     aria-controls="advancedUI">
+                 <a class="nav-link" data-bs-toggle="collapse" href="#advancedUI" role="button"
+                     aria-expanded="false" aria-controls="advancedUI">
                      <i class="link-icon" data-feather="anchor"></i>
                      <span class="link-title">Advanced UI</span>
                      <i class="link-arrow" data-feather="chevron-down"></i>
