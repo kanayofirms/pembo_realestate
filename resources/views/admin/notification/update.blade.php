@@ -35,7 +35,7 @@
                             <div class="row mb-3">
                                 <label class="col-sm-3 col-form-label">Title <span style="color: red;">*</span></label>
                                 <div class="col-sm-9">
-                                    <input type="email" class="form-control" name="title" autocomplete="off"
+                                    <input type="text" class="form-control" name="title" autocomplete="off"
                                         placeholder="Title" value="" required>
                                     <span style="color: red;">{{ $errors->first('title') }}</span>
                                 </div>
