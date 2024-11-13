@@ -9,7 +9,8 @@ class QRCodeController extends Controller
 {
     public function list(Request $request)
     {
-        return view('admin.qrcode.list');
+        $data['getRecord'] = ProductModel::get();
+        return view('admin.qrcode.list', $data);
     }
 
     public function add_qrcode(Request $request)
