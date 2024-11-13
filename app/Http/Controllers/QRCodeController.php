@@ -31,4 +31,10 @@ class QRCodeController extends Controller
 
         return redirect('admin/qrcode')->with('success', "QRCode Successfully Added");
     }
+
+    public function edit_qrcode($id)
+    {
+        $data['getRecord'] = ProductModel::find($id);
+        return view('admin.qrcode.edit', $data);
+    }
 }
