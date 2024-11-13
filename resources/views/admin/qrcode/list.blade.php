@@ -27,45 +27,28 @@
                                 <thead>
                                     <tr>
                                         <th>#</th>
-                                        <th>Name</th>
+                                        <th>Title</th>
+                                        <th>Price</th>
+                                        <th>Product Code</th>
+                                        <th>Description</th>
                                         <th>Created At</th>
-                                        <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @foreach ($getRecord as $value)
                                         <tr class="table-info text-dark">
                                             <td>{{ $value->id }}</td>
-                                            <td>{{ $value->name }}</td>
-                                            <td>{{ date('d-m-Y', strtotime($value->created_at)) }}</td>
+                                            <td>{{ $value->title }}</td>
+                                            <td>{{ $value->price }}</td>
                                             <td>
-                                                <a href="{{ url('admin/qrcode/edit/' . $value->id) }}"
-                                                    class="dropdown-item">
-                                                    <svg xmlns="(link unavailable)" width="24" height="24"
-                                                        viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                                                        class="feather feather-edit-2 icon-sm me-2">
-                                                        <path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z">
-                                                        </path>
-                                                    </svg>
-                                                    <span class="">Edit</span>
-                                                </a>
+                                                {!! DNS2D::getBarcodeHTML("$value->product_code", 'QRCODE') !!}
 
-                                                <a href="{{ url('admin/qrcode/delete/' . $value->id) }}"
-                                                    class="dropdown-item"
-                                                    onclick="return confirm('Are you sure you want to delete?')">
-                                                    <svg xmlns="(link unavailable)" width="24" height="24"
-                                                        viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                                                        class="feather feather-trash icon-sm me-2">
-                                                        <polyline points="3 6 5 6 21 6"></polyline>
-                                                        <path
-                                                            d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2">
-                                                        </path>
-                                                    </svg>
-                                                    <span class="">Delete</span>
-                                                </a>
+                                                Product:{{ $value->product_code }}
+
                                             </td>
+                                            <td>{{ $value->description }}</td>
+                                            <td>{{ date('d-m-Y', strtotime($value->created_at)) }}</td>
+
                                         </tr>
                                     @endforeach
                                 </tbody>
@@ -73,7 +56,7 @@
                         </div>
 
                         <div style="padding: 20px; float: right;">
-                            {!! $getRecord->appends(Illuminate\Support\Facades\Request::except('page'))->links() !!}
+
                         </div>
                     </div>
                 </div>
