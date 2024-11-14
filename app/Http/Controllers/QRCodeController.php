@@ -37,4 +37,19 @@ class QRCodeController extends Controller
         $data['getRecord'] = ProductModel::find($id);
         return view('admin.qrcode.edit', $data);
     }
+
+    public function update_qrcode($id, Request $request)
+    {
+        $randNum = mt_rand(999999999, 11111111111);
+
+        $save = ProductModel::find($id);
+        $save->title = trim($request->title);
+        $save->price = trim($request->price);
+        $save->product_code = $randNum;
+        $save->description = trim($request->description);
+        $save->save();
+
+        return redirect('admin/qrcode')->with('success', "QRCode Successfully Updated");
+
+    }
 }
