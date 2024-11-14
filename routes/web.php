@@ -95,6 +95,7 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
 
     // SMTP Start
     Route::get('admin/smtp', [SMTPController::class, 'smtp_list']);
+    Route::post('admin/smtp_update', [SMTPController::class, 'smtp_update']);
     // SMTP End
 });
 
