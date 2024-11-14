@@ -52,4 +52,12 @@ class QRCodeController extends Controller
         return redirect('admin/qrcode')->with('success', "QRCode Successfully Updated");
 
     }
+
+    public function delete_qrcode($id, Request $request)
+    {
+        $save = ProductModel::find($id);
+        $save->delete();
+
+        return redirect('admin/qrcode')->with('success', "QRCode Deleted Successfully.");
+    }
 }
