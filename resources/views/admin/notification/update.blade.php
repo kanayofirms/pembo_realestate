@@ -18,19 +18,7 @@
                         <form class="forms-sample" method="POST" action="{{ url('admin/notification_send') }}"
                             enctype="multipart/form-data">
                             {{ csrf_field() }}
-                            <div class="row mb-3">
-                                <label class="col-sm-3 col-form-label">Username<span style="color: red;">*</span></label>
-                                <div class="col-sm-9">
-                                    <select name="user_id" class="form-control">
-                                        <option value="">Select Username</option>
-                                        @foreach ($getRecord as $value)
-                                            <option value="{{ $value->id }}">{{ $value->name }} {{ $value->username }}
-                                                ({{ $value->role }})
-                                            </option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                            </div>
+
 
                             <div class="row mb-3">
                                 <label class="col-sm-3 col-form-label">Title <span style="color: red;">*</span></label>
