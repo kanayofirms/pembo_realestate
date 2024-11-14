@@ -88,6 +88,7 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::get('admin/qrcode/add', [QRCodeController::class, 'add_qrcode']);
     Route::post('admin/qrcode/add', [QRCodeController::class, 'store_qrcode']);
     Route::get('admin/qrcode/edit/{id}', [QRCodeController::class, 'edit_qrcode']);
+    Route::post('admin/qrcode/edit/{id}', [QRCodeController::class, 'update_qrcode']);
     //QRCode End
 });
 
