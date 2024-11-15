@@ -26,4 +26,10 @@ class ColourController extends Controller
 
         return redirect('admin/colour')->with("success", "Colour Successfully Added!");
     }
+
+    public function edit_colour($id)
+    {
+        $data['getRecord'] = ColourModel::find($id);
+        return view('admin.colour.edit', $data);
+    }
 }
