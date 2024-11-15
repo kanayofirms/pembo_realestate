@@ -17,4 +17,13 @@ class ColourController extends Controller
     {
         return view('admin.colour.add');
     }
+
+    public function store_colour(Request $request)
+    {
+        $save = new ColourModel;
+        $save->name = trim($request->name);
+        $save->save();
+
+        return redirect('admin/colour')->with("success", "Colour Successfully Added!");
+    }
 }
