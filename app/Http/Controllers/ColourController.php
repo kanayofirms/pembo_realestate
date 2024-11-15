@@ -12,4 +12,9 @@ class ColourController extends Controller
         $data['getRecord'] = ColourModel::get();
         return view('admin.colour.list', $data);
     }
+
+    public function add_colour(Request $request)
+    {
+        return view('admin.colour.add');
+    }
 }
