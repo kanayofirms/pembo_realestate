@@ -8,6 +8,7 @@ use App\Http\Controllers\EmailController;
 use App\Http\Controllers\UserTimeController;
 use App\Http\Controllers\QRCodeController;
 use App\Http\Controllers\SMTPController;
+use App\Http\Controllers\ColourController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -97,6 +98,10 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::get('admin/smtp', [SMTPController::class, 'smtp_list']);
     Route::post('admin/smtp_update', [SMTPController::class, 'smtp_update']);
     // SMTP End
+
+    // Colour Start
+    Route::get('admin/colour', [ColourController::class, 'colour_list']);
+    // Colour End
 });
 
 Route::middleware(['auth', 'role:agent'])->group(function () {
