@@ -32,4 +32,13 @@ class ColourController extends Controller
         $data['getRecord'] = ColourModel::find($id);
         return view('admin.colour.edit', $data);
     }
+
+    public function update_colour($id, Request $request)
+    {
+        $save = ColourModel::find($id);
+        $save->name = trim($request->name);
+        $save->save();
+
+        return redirect('admin/colour')->with("success", "Colour Successfully Updated!");
+    }
 }
