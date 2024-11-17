@@ -12,7 +12,8 @@ class OrdersController extends Controller
 {
     public function list_order(Request $request)
     {
-        return view('admin.order.list');
+        $data['getOrder'] = OrdersModel::getRecord();
+        return view('admin.order.list', $data);
     }
 
     public function add_order(Request $request)
