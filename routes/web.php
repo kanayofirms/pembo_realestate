@@ -9,7 +9,7 @@ use App\Http\Controllers\UserTimeController;
 use App\Http\Controllers\QRCodeController;
 use App\Http\Controllers\SMTPController;
 use App\Http\Controllers\ColourController;
-use App\Http\Controllers\OrderController;
+use App\Http\Controllers\OrdersController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -110,8 +110,9 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     // Colour End
 
     // Order Start
-    Route::get('admin/order', [OrderController::class, 'list_order']);
-    Route::get('admin/order/add', [OrderController::class, 'add_order']);
+    Route::get('admin/order', [OrdersController::class, 'list_order']);
+    Route::get('admin/order/add', [OrdersController::class, 'add_order']);
+    Route::post('admin/order/add', [OrdersController::class, 'store_order']);
     // Order End
 });
 
