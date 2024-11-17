@@ -41,4 +41,12 @@ class ColourController extends Controller
 
         return redirect('admin/colour')->with("success", "Colour Successfully Updated!");
     }
+
+    public function delete_colour($id, Request $request)
+    {
+        $save = ColourModel::find($id);
+        $save->delete();
+
+        return redirect('admin/colour')->with("success", "Colour Successfully Deleted!");
+    }
 }
