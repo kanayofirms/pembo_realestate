@@ -45,4 +45,13 @@ class OrdersController extends Controller
         // Redirect after saving all order details
         return redirect('admin/order')->with('success', "Order Successfully Created!");
     }
+
+    public function edit_order($id)
+    {
+        $data['getProduct'] = ProductModel::get();
+        $data['getColour'] = ColourModel::get();
+        $data['getRecord'] = OrdersModel::find($id);
+        $data['getOrderDetail'] = OrdersDetailsModel::where('orders_id', '=', $id)->get();
+        return view('admin.order.edit', $data);
+    }
 }
