@@ -113,6 +113,7 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::get('admin/order', [OrdersController::class, 'list_order']);
     Route::get('admin/order/add', [OrdersController::class, 'add_order']);
     Route::post('admin/order/add', [OrdersController::class, 'store_order']);
+    Route::get('admin/order/edit/{id}', [OrdersController::class, 'edit_order']);
     // Order End
 });
 
