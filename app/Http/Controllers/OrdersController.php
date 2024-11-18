@@ -54,4 +54,27 @@ class OrdersController extends Controller
         $data['getOrderDetail'] = OrdersDetailsModel::where('orders_id', '=', $id)->get();
         return view('admin.order.edit', $data);
     }
+
+    public function update_order($id, Request $request)
+    {
+        // dd($request->all());
+        $save = OrdersModel::find($id);
+        $save->product_id = trim($request->product_id);
+        $save->qtys = trim($request->qtys);
+        $save->save();
+
+        OrdersDetailsModel::where('orders_id', '=', $save->id)->delete();
+        if (!empty($request->colour_id)) {
+            // Loop through all provided colour_ids and save them with the same order_id
+            foreach ($request->colour_id as $colour_id) {
+                $order = new OrdersDetailsModel;
+                $order->orders_id = $save->id;  // Assign the order_id from the saved order
+                $order->colour_id = $colour_id; // Assign the current colour_id
+                $order->save();  // Save each order detail
+            }
+        }
+
+        // Redirect after saving all order details
+        return redirect('admin/order')->with('success', "Order Successfully Updated!");
+    }
 }
