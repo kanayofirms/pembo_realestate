@@ -25,21 +25,24 @@ class OrdersController extends Controller
 
     public function store_order(Request $request)
     {
-        // dd($request->all());
+        // Create a new order
         $save = new OrdersModel;
         $save->product_id = trim($request->product_id);
         $save->qtys = trim($request->qtys);
         $save->save();
 
+        // Check if colour_ids are provided
         if (!empty($request->colour_id)) {
+            // Loop through all provided colour_ids and save them with the same order_id
             foreach ($request->colour_id as $colour_id) {
-                $orders = new OrdersDetailsModel;
-                $orders->orders_id = $save->id;
-                $orders->colour_id = $colour_id;
-                $orders->save();
-
-                return redirect('admin/order')->with('success', "Order Successfully Created!");
+                $order = new OrdersDetailsModel;
+                $order->orders_id = $save->id;  // Assign the order_id from the saved order
+                $order->colour_id = $colour_id; // Assign the current colour_id
+                $order->save();  // Save each order detail
             }
         }
+
+        // Redirect after saving all order details
+        return redirect('admin/order')->with('success', "Order Successfully Created!");
     }
 }
