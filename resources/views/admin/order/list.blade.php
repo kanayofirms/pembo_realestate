@@ -45,7 +45,9 @@
                                             <td>{{ $value->qtys }}</td>
                                             <td>
                                                 @foreach ($value->getColour as $valueC)
-                                                    {{ $valueC->name }}
+                                                    {{ $valueC->name }}@if (!$loop->last)
+                                                        ,
+                                                    @endif
                                                 @endforeach
                                             </td>
                                             <td>{{ date('d-m-Y', strtotime($value->created_at)) }}</td>
