@@ -77,4 +77,14 @@ class OrdersController extends Controller
         // Redirect after saving all order details
         return redirect('admin/order')->with('success', "Order Successfully Updated!");
     }
+
+    public function delete_order($id)
+    {
+        $deleteRecord = OrdersModel::find($id);
+        $deleteRecord->delete();
+
+        OrdersDetailsModel::where('orders_details.orders_id', '=', $id)->delete();
+
+        return redirect()->back()->with('success', "Record Successfully Deleted!");
+    }
 }
