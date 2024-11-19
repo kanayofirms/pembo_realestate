@@ -87,19 +87,19 @@ class AdminController extends Controller
         return view('admin.users.list', $data);
     }
 
-    public function view($id)
+    public function view_users($id)
     {
         $data['getRecord'] = User::find($id);
         return view('admin.users.view', $data);
     }
 
-    public function edit($id)
+    public function edit_users($id)
     {
         $data['getRecord'] = User::find($id);
         return view('admin.users.edit', $data);
     }
 
-    public function edit_post($id, Request $request)
+    public function edit_users_update($id, Request $request)
     {
         $save = User::find($id);
         $save->name = trim($request->name);
@@ -107,6 +107,18 @@ class AdminController extends Controller
         $save->phone = trim($request->phone);
         $save->role = trim($request->role);
         $save->status = trim($request->status);
+
+        if (!empty($request->file('photo'))) {
+            if (!empty($save->photo) && file_exists('upload/' . $save->photo)) {
+                unlink('upload/' . $save->photo);
+            }
+            $file = $request->file('photo');
+            $randomStr = Str::random(30);
+            $filename = $randomStr . '.' . $file->getClientOriginalExtension();
+            $file->move('upload/', $filename);
+            $save->photo = $filename;
+        }
+
         $save->save();
 
         return redirect('admin/users')->with('success', "Record Successfully Updated.");
