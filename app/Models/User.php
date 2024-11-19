@@ -89,4 +89,13 @@ class User extends Authenticatable
         $return = $return->paginate(100);
         return $return;
     }
+
+    public function getFile()
+    {
+        if (!empty($this->photo) && file_exists('upload/' . $this->photo)) {
+            return url('upload/' . $this->photo);
+        } else {
+            return "";
+        }
+    }
 }
