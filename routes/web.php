@@ -39,9 +39,9 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::get('admin/users/add', [AdminController::class, 'admin_add_users']);
     Route::post('admin/users/add', [AdminController::class, 'admin_add_users_store']);
 
-    Route::get('admin/users/view/{id}', [AdminController::class, 'view']);
-    Route::get('admin/users/edit/{id}', [AdminController::class, 'edit']);
-    Route::post('admin/users/edit/{id}', [AdminController::class, 'edit_post']);
+    Route::get('admin/users/view/{id}', [AdminController::class, 'view_users']);
+    Route::get('admin/users/edit/{id}', [AdminController::class, 'edit_users']);
+    Route::post('admin/users/edit/{id}', [AdminController::class, 'edit_users_update']);
     Route::get('admin/users/delete/{id}', [AdminController::class, 'admin_soft_delete']);
 
     Route::post('admin/users/update', [AdminController::class, 'admin_users_update']);
