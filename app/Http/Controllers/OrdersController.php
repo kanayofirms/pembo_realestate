@@ -12,7 +12,7 @@ class OrdersController extends Controller
 {
     public function list_order(Request $request)
     {
-        $data['getOrder'] = OrdersModel::getRecord();
+        $data['getOrder'] = OrdersModel::getRecord($request);//update getRecord function with $request param
         return view('admin.order.list', $data);
     }
 
