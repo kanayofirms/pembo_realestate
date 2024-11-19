@@ -33,6 +33,13 @@
                  </a>
              </li>
 
+             <li class="nav-item">
+                 <a href="{{ url('admin/order') }}" class="nav-link">
+                     <i class="link-icon" data-feather="box"></i>
+                     <span class="link-title">Order</span>
+                 </a>
+             </li>
+
              <li class="nav-item nav-category">User Week</li>
              <li class="nav-item" @if (Request::segment(2) == 'week') active @endif>
                  <a href="{{ url('admin/week') }}" class="nav-link">
@@ -108,8 +115,8 @@
              </li>
              <li class="nav-item nav-category">Components</li>
              <li class="nav-item">
-                 <a class="nav-link" data-bs-toggle="collapse" href="#uiComponents" role="button" aria-expanded="false"
-                     aria-controls="uiComponents">
+                 <a class="nav-link" data-bs-toggle="collapse" href="#uiComponents" role="button"
+                     aria-expanded="false" aria-controls="uiComponents">
                      <i class="link-icon" data-feather="feather"></i>
                      <span class="link-title">UI Kit</span>
                      <i class="link-arrow" data-feather="chevron-down"></i>
