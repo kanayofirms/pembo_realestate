@@ -10,7 +10,56 @@
                 <li class="breadcrumb-item active" aria-current="page">Order List</li>
             </ol>
         </nav>
+        {{-- Search Start --}}
+        <div class="row">
+            <div class="col-lg-12 stretch-card">
+                <div class="card">
+                    <div class="card-body">
+                        <h6 class="card-title">Search Order</h6>
+                        <form action="" method="get">
+                            <div class="row">
+                                <div class="col-sm-2">
+                                    <div class="mb-3">
+                                        <label for="" class="form-label">ID</label>
+                                        <input type="text" name="id" class="form-control"
+                                            value="{{ Request()->id }}" placeholder="Enter ID">
+                                    </div>
+                                </div>
 
+                                <div class="col-sm-4">
+                                    <div class="mb-3">
+                                        <label for="" class="form-label">Product Title</label>
+                                        <input type="text" name="title" class="form-control"
+                                            value="{{ Request()->title }}" placeholder="Enter Product Title">
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-2">
+                                    <div class="mb-3">
+                                        <label for="" class="form-label">Created At</label>
+                                        <input type="date" name="created_at" class="form-control"
+                                            value="{{ Request()->created_at }}" placeholder="Enter Created At">
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-2">
+                                    <div class="mb-3">
+                                        <label for="" class="form-label">Updated At</label>
+                                        <input type="date" name="updated_at" class="form-control"
+                                            value="{{ Request()->updated_at }}" placeholder="Enter Updated At">
+                                    </div>
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Search</button>
+                            <a href="{{ url('admin/order') }}" class="btn btn-danger">Reset</a>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {{-- Search End --}}
+
+        <br>
         <div class="row">
             <div class="col-lg-12 stretch-card">
                 <div class="card">
