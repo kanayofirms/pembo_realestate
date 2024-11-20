@@ -10,6 +10,7 @@ use App\Http\Controllers\QRCodeController;
 use App\Http\Controllers\SMTPController;
 use App\Http\Controllers\ColourController;
 use App\Http\Controllers\OrdersController;
+use App\Http\Controllers\BlogController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -117,6 +118,11 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::post('admin/order/edit/{id}', [OrdersController::class, 'update_order']);
     Route::get('admin/order/delete/{id}', [OrdersController::class, 'delete_order']);
     // Order End
+
+    // Blog Start
+    Route::get('admin/blog', [BlogController::class, 'list_blog']);
+    // Blog End
+
 });
 
 Route::middleware(['auth', 'role:agent'])->group(function () {
