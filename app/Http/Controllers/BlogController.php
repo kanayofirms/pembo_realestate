@@ -10,4 +10,9 @@ class BlogController extends Controller
     {
         return view('admin.blog.list');
     }
+
+    public function add_blog(Request $request)
+    {
+        return view('admin.blog.add');
+    }
 }
