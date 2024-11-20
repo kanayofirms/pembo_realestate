@@ -10,4 +10,9 @@ class SMTPModel extends Model
     use HasFactory;
 
     protected $table = 'smtp';
+
+    public static function getSingleFirst()
+    {
+        return self::find(1);
+    }
 }
