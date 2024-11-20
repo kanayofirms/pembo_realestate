@@ -14,7 +14,8 @@
 
                         <h6 class="card-title">Add User</h6>
 
-                        <form class="forms-sample" method="POST" action="{{ url('admin/users/add') }}">
+                        <form class="forms-sample" method="POST" action="{{ url('admin/users/add') }}"
+                            enctype="multipart/form-data">
                             {{ csrf_field() }}
                             <div class="row mb-3">
                                 <label class="col-sm-3 col-form-label">Name <span style="color: red;">*</span></label>
@@ -36,6 +37,12 @@
                                         placeholder="Email" value="{{ old('email') }}" onblur="duplicateEmail(this)"
                                         required>
                                     <span style="color: red;" class="duplicate_message">{{ $errors->first('email') }}</span>
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <label class="col-sm-3 col-form-label">Photo</label>
+                                <div class="col-sm-9">
+                                    <input type="file" class="form-control" name="photo">
                                 </div>
                             </div>
                             <div class="row mb-3">
