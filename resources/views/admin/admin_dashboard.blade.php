@@ -37,6 +37,8 @@
     <!-- End layout styles -->
 
     <link rel="shortcut icon" href="{{ asset('assets/images/favicon.png') }}" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.min.css">
+
 </head>
 
 <body>
@@ -79,7 +81,7 @@
     <!-- Custom js for this page -->
     <script src="{{ asset('assets/js/dashboard-dark.js') }}"></script>
     <!-- End custom js for this page -->
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox.min.js"></script>
     @yield('script')
     <script type="text/javascript"></script>
 
