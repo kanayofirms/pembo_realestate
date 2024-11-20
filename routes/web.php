@@ -122,6 +122,7 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     // Blog Start
     Route::get('admin/blog', [BlogController::class, 'list_blog']);
     Route::get('admin/blog/add', [BlogController::class, 'add_blog']);
+    Route::post('admin/blog/add', [BlogController::class, 'store_blog']);
     // Blog End
 
 });
