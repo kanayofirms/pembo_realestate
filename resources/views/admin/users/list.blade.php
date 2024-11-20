@@ -188,8 +188,11 @@
                                                 <td>{{ $value->email }}</td>
                                                 <td>
                                                     @if (!empty($value->photo))
-                                                        <img src="{{ asset('upload/' . $value->photo) }}"
-                                                            style="width: 100%; height: 100%;">
+                                                        <a href="{{ asset('upload/' . $value->photo) }}"
+                                                            data-lightbox="example-set">
+                                                            <img src="{{ asset('upload/' . $value->photo) }}"
+                                                                style="width: 100%; height: 100%;">
+                                                        </a>
                                                     @endif
                                                 </td>
                                                 <td>{{ $value->phone }}</td>
