@@ -130,6 +130,18 @@
             font_formats: 'Arial=arial,helvetica,sans-serif;Courier New=courier new,courier,monospace;AkrutikndPadmini=Akpdmi-n',
             content_style: 'body { color: white; }',
         });
+
+        function convertToSlug(Text) {
+            return Text.toLowerCase()
+                .replace(/ /g, "-")
+                .replace(/[^\w-]+/g, "");
+        }
+
+        $('body').delegate('#ConvertSlug', 'click', function() {
+            var title = $('#getTitle').val();
+            var slug = convertToSlug(title);
+            $('#getSlug').val(slug);
+        });
     </script>
 
 </body>
