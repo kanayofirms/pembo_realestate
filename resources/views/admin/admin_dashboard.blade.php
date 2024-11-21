@@ -83,7 +83,12 @@
     <script src="{{ asset('assets/js/dashboard-dark.js') }}"></script>
     <!-- End custom js for this page -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/9000.0.1/prism.min.js" crossorigin="anonymous"
+        referrerpolicy="no-referrer"></script>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tinymce/7.2.1/tinymce.min.js"></script>
+
     @yield('script')
     <script type="text/javascript">
         tinymce.init({
