@@ -35,6 +35,7 @@
                                         <th>Description</th>
                                         <th>Created At</th>
                                         <th>Updated At</th>
+                                        <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -46,6 +47,12 @@
                                             <td>{!! $value->description !!}</td>
                                             <td>{{ date('d-m-Y H:s:i', strtotime($value->created_at)) }}</td>
                                             <td>{{ date('d-m-Y H:s A', strtotime($value->updated_at)) }}</td>
+
+                                            <td>
+                                                <a class="btn btn-secondary"
+                                                    href="{{ url('admin/blog/view/' . $value->id) }}"><span
+                                                        class="">View</span></a>
+                                            </td>
                                         </tr>
                                     @empty
                                         <tr>
