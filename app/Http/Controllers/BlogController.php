@@ -9,7 +9,8 @@ class BlogController extends Controller
 {
     public function list_blog()
     {
-        return view('admin.blog.list');
+        $data['getRecord'] = BlogModel::getAllRecord();
+        return view('admin.blog.list', $data);
     }
 
     public function add_blog(Request $request)
