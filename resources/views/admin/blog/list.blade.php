@@ -11,6 +11,49 @@
             </ol>
         </nav>
 
+
+        {{-- Search Box Start --}}
+        <div class="row">
+            <div class="col-lg-12 stretch-card">
+                <div class="card">
+                    <div class="card-body">
+                        <h6 class="card-title">Search Blog</h6>
+                        <form action="" action="">
+                            <div class="row">
+                                <div class="col-sm-2">
+                                    <div class="mb-3">
+                                        <label for="" class="form-label">ID</label>
+                                        <input type="text" name="id" class="form-control"
+                                            value="{{ Request()->id }}" placeholder="Enter ID">
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-5">
+                                    <div class="mb-3">
+                                        <label for="" class="form-label">Title</label>
+                                        <input type="text" name="title" class="form-control"
+                                            value="{{ Request()->title }}" placeholder="Enter Title">
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-5">
+                                    <div class="mb-3">
+                                        <label for="" class="form-label">Slug</label>
+                                        <input type="text" name="slug" class="form-control"
+                                            value="{{ Request()->slug }}" placeholder="Enter Slug">
+                                    </div>
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Search</button>
+                            <a href="{{ url('admin/blog') }}" class="btn btn-danger">Reset</a>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {{-- Search Box End --}}
+        <br>
+
         <div class="row">
             <div class="col-lg-12 stretch-card">
                 <div class="card">
@@ -52,6 +95,11 @@
                                                 <a class="btn btn-secondary"
                                                     href="{{ url('admin/blog/view/' . $value->id) }}"><span
                                                         class="">View</span></a>
+
+                                                <a onclick="return confirm('Are you sure you want to delete?')"
+                                                    class="btn btn-danger"
+                                                    href="{{ url('admin/blog/delete/' . $value->id) }}"><span
+                                                        class="">Delete</span></a>
                                             </td>
                                         </tr>
                                     @empty
