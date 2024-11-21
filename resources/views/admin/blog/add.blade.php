@@ -19,21 +19,23 @@
                             <div class="row mb-3">
                                 <label class="col-sm-3 col-form-label">Title <span style="color: red;">*</span></label>
                                 <div class="col-sm-9">
-                                    <input type="text" class="form-control" name="title" placeholder="Enter Title"
-                                        required>
+                                    <input type="text" id="getTitle" class="form-control" name="title"
+                                        placeholder="Enter Title" required>
                                 </div>
                             </div>
 
                             <div class="row mb-3">
-                                <label class="col-sm-3 col-form-label">Slug <span style="color: red;">*</span></label>
+                                <label class="col-sm-3 col-form-label">Slug <span style="color: red;">*</span><a
+                                        href="javascript:;" id="ConvertSlug">Convert Slug</a></label>
                                 <div class="col-sm-9">
-                                    <input type="text" class="form-control" name="slug" placeholder="Enter Slug"
-                                        required>
+                                    <input type="text" id="getSlug" class="form-control" name="slug"
+                                        placeholder="Enter Slug" required>
                                 </div>
                             </div>
 
                             <div class="row mb-3">
-                                <label class="col-sm-3 col-form-label">Title <span style="color: red;">*</span></label>
+                                <label class="col-sm-3 col-form-label">Description <span
+                                        style="color: red;">*</span></label>
                                 <div class="col-sm-9">
                                     <textarea name="description" class="form-control editor" placeholder="Enter Description">Description</textarea>
                                 </div>
