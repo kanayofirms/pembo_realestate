@@ -62,4 +62,17 @@ class ColourController extends Controller
         return $pdf->download('Pembo.pdf');
 
     }
+
+    public function pdf_colour()
+    {
+        $getRecord = ColourModel::get();
+        $data = [
+            'title' => 'Show All Colour',
+            'date' => date('m-d-Y'),
+            'getRecord' => $getRecord
+        ];
+
+        $pdf = PDF::loadView('pdf.PDFColour', $data);
+        return $pdf->download('colour.pdf');
+    }
 }
