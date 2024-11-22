@@ -36,6 +36,12 @@ class BlogController extends Controller
         return redirect('admin/blog')->with('success', 'Blog Successfully Added');
     }
 
+    public function edit_blog($id, Request $request)
+    {
+        $data['getRecord'] = BlogModel::find($id);
+        return view('admin.blog.edit', $data);
+    }
+
     public function view_blog($id)
     {
         $data['getRecord'] = BlogModel::find($id);
