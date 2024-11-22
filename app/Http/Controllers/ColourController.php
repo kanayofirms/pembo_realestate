@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\ColourModel;
+use PDF;
 
 class ColourController extends Controller
 {
@@ -48,5 +49,17 @@ class ColourController extends Controller
         $save->delete();
 
         return redirect('admin/colour')->with("success", "Colour Successfully Deleted!");
+    }
+
+    public function pdf_demo()
+    {
+        $data = [
+            'title' => 'Welcome New PDF pembo.org. An Exciting Ride Awaits You.',
+            'date' => date('m-d-Y')
+        ];
+        $pdf = PDF::loadView('pdf.myPDFDemo', $data);
+
+        return $pdf->download('Pembo.pdf');
+
     }
 }
