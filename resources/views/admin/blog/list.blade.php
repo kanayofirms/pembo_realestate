@@ -92,6 +92,10 @@
                                             <td>{{ date('d-m-Y H:s A', strtotime($value->updated_at)) }}</td>
 
                                             <td>
+                                                <a class="btn btn-primary"
+                                                    href="{{ url('admin/blog/edit/' . $value->id) }}"><span
+                                                        class="">Edit</span></a>
+
                                                 <a class="btn btn-secondary"
                                                     href="{{ url('admin/blog/view/' . $value->id) }}"><span
                                                         class="">View</span></a>
