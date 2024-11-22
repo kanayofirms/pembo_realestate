@@ -19,6 +19,12 @@
                         <div class="d-flex justify-content-between align-items-center flex-wrap">
                             <h4 class="card-title">Colour List</h4>
                             <div class="d-flex align-items-center">
+
+                                <a href="{{ url('admin/pdf_colour') }}" class="btn btn-info">
+                                    PDF Colour
+                                </a>
+                                &nbsp;&nbsp;&nbsp;
+
                                 <a href="{{ url('admin/pdf_demo') }}" class="btn btn-primary">
                                     PDF Demo
                                 </a>
