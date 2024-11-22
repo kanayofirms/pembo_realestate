@@ -42,6 +42,23 @@ class BlogController extends Controller
         return view('admin.blog.edit', $data);
     }
 
+    public function update_blog($id, Request $request)
+    {
+        $save = request()->validate([
+            'title' => 'required',
+            'slug' => 'required',
+            'description' => 'required'
+        ]);
+
+        $save = BlogModel::find($id);
+        $save->title = trim($request->title);
+        $save->slug = trim($request->slug);
+        $save->description = trim($request->description);
+        $save->save();
+
+        return redirect('admin/blog')->with('success', 'Blog Successfully Updated');
+    }
+
     public function view_blog($id)
     {
         $data['getRecord'] = BlogModel::find($id);
