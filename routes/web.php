@@ -129,6 +129,11 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::get('admin/blog/delete/{id}', [BlogController::class, 'delete_blog']);
     // Blog End
 
+    // PDF Start
+    Route::get('admin/pdf_demo', [ColourController::class, 'pdf_demo']);
+    Route::get('admin/pdf_colour', [ColourController::class, 'pdf_colour']);
+    // PDF End
+
 });
 
 Route::middleware(['auth', 'role:agent'])->group(function () {
