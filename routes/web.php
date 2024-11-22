@@ -124,6 +124,7 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::get('admin/blog/add', [BlogController::class, 'add_blog']);
     Route::post('admin/blog/add', [BlogController::class, 'store_blog']);
     Route::get('admin/blog/edit/{id}', [BlogController::class, 'edit_blog']);
+    Route::post('admin/blog/edit/{id}', [BlogController::class, 'update_blog']);
     Route::get('/admin/blog/view/{id}', [BlogController::class, 'view_blog']);
     Route::get('admin/blog/delete/{id}', [BlogController::class, 'delete_blog']);
     // Blog End
