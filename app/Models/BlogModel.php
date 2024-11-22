@@ -30,7 +30,7 @@ class BlogModel extends Model
             $return = $return->where('blog.slug', 'like', '%' . Request::get('slug') . '%');
         }
         // Search Box End
-        $return = $return->paginate(20);
+        $return = $return->paginate(3);
 
         return $return;
     }
