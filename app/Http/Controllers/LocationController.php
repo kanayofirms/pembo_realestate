@@ -41,4 +41,12 @@ class LocationController extends Controller
 
         return redirect('admin/countries')->with('success', "Country Successfully Updated!");
     }
+
+    public function countries_delete($id)
+    {
+        $recordDelete = CountriesModel::find($id);
+        $recordDelete->delete();
+
+        return redirect('admin/countries')->with('success', "Record Successfully Deleted!");
+    }
 }
