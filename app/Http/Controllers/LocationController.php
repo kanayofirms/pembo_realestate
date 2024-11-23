@@ -10,7 +10,7 @@ class LocationController extends Controller
     public function countries_index(Request $request)
     {
         $data['getRecord'] = CountriesModel::get();
-        return view('admin.location.list', $data);
+        return view('admin.countries.list', $data);
     }
 
     public function countries_add()
