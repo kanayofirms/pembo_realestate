@@ -12,4 +12,9 @@ class LocationController extends Controller
         $data['getRecord'] = CountriesModel::get();
         return view('admin.location.list', $data);
     }
+
+    public function countries_add()
+    {
+        return view('admin.countries.add');
+    }
 }
