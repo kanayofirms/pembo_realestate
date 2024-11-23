@@ -132,6 +132,7 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     // PDF Start
     Route::get('admin/pdf_demo', [ColourController::class, 'pdf_demo']);
     Route::get('admin/pdf_colour', [ColourController::class, 'pdf_colour']);
+    Route::get('admin/colour/pdf/{id}', [ColourController::class, 'pdf_id']);
     // PDF End
 
 });
