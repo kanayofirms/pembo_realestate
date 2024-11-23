@@ -55,8 +55,8 @@
                                             <td>{{ date('d-m-Y', strtotime($value->created_at)) }}</td>
 
                                             <td>
-
-
+                                                <a href="{{ url('admin/colour/pdf/' . $value->id) }}"
+                                                    class="btn btn-success">PDF</a>
                                                 <a class="dropdown-item"
                                                     href="{{ url('admin/colour/edit/' . $value->id) }}"><svg
                                                         xmlns="http://www.w3.org/2000/svg" width="24" height="24"
