@@ -26,4 +26,10 @@ class LocationController extends Controller
 
         return redirect('admin/countries')->with('success', "Country Successfully Added!");
     }
+
+    public function countries_edit($id)
+    {
+        $data['getRecord'] = CountriesModel::find($id);
+        return view('admin.countries.edit', $data);
+    }
 }
