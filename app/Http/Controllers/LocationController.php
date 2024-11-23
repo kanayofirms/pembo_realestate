@@ -32,4 +32,13 @@ class LocationController extends Controller
         $data['getRecord'] = CountriesModel::find($id);
         return view('admin.countries.edit', $data);
     }
+
+    public function countries_update($id, Request $request)
+    {
+        $save = CountriesModel::find($id);
+        $save->country_name = trim($request->country_name);
+        $save->save();
+
+        return redirect('admin/countries')->with('success', "Country Successfully Updated!");
+    }
 }
