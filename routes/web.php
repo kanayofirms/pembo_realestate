@@ -39,6 +39,7 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::post('admin/countries/add', [LocationController::class, 'countries_store']);
     Route::get('admin/countries/edit/{id}', [LocationController::class, 'countries_edit']);
     Route::post('admin/countries/edit/{id}', [LocationController::class, 'countries_update']);
+    Route::get('admin/countries/delete/{id}', [LocationController::class, 'countries_delete']);
     // Address End
     Route::get('admin/dashboard', [AdminController::class, 'AdminDashboard'])->name('admin.dashboard');
     Route::get('admin/logout', [AdminController::class, 'AdminLogout'])->name('admin.logout');
