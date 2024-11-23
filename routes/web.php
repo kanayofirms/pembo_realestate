@@ -11,6 +11,8 @@ use App\Http\Controllers\SMTPController;
 use App\Http\Controllers\ColourController;
 use App\Http\Controllers\OrdersController;
 use App\Http\Controllers\BlogController;
+use App\Http\Controllers\LocationController;
+
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -30,6 +32,10 @@ Route::middleware('auth')->group(function () {
 require __DIR__ . '/auth.php';
 
 Route::middleware(['auth', 'role:admin'])->group(function () {
+
+    // Address Start
+    Route::get('admin/countries', [LocationController::class, 'countries_index']);
+    // Address End
     Route::get('admin/dashboard', [AdminController::class, 'AdminDashboard'])->name('admin.dashboard');
     Route::get('admin/logout', [AdminController::class, 'AdminLogout'])->name('admin.logout');
     Route::get('admin/profile', [AdminController::class, 'admin_profile']);
