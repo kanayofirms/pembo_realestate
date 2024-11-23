@@ -75,4 +75,18 @@ class ColourController extends Controller
         $pdf = PDF::loadView('pdf.PDFColour', $data);
         return $pdf->download('colour.pdf');
     }
+
+    public function pdf_id($id)
+    {
+        $getRecord = ColourModel::find($id);
+
+        $data = [
+            'title' => 'New PDF Download Pembo.org',
+            'date' => date('d-m-Y'),
+            'getRecord' => $getRecord
+        ];
+
+        $pdf = PDF::loadView('pdf.ColourPDF', $data);
+        return $pdf->download('colourid.pdf');
+    }
 }
