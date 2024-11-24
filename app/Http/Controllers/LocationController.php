@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\StateModel;
 use Illuminate\Http\Request;
 use App\Models\CountriesModel;
 
@@ -48,5 +49,11 @@ class LocationController extends Controller
         $recordDelete->delete();
 
         return redirect('admin/countries')->with('success', "Record Successfully Deleted!");
+    }
+
+    public function state_list()
+    {
+        $data['getRecord'] = StateModel::get();
+        return view('admin.state.list', $data);
     }
 }
