@@ -79,4 +79,14 @@ class LocationController extends Controller
         $data['getRecord'] = StateModel::find($id);
         return view('admin.state.edit', $data);
     }
+
+    public function state_update($id, Request $request)
+    {
+        $save = StateModel::find($id);
+        $save->countries_id = trim($request->countries_id);
+        $save->state_name = trim($request->state_name);
+        $save->save();
+
+        return redirect('admin/state')->with('success', "State Successfully Updated!");
+    }
 }
