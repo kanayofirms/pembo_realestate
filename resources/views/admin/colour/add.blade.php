@@ -19,7 +19,8 @@
                             <div class="row mb-3">
                                 <label class="col-sm-3 col-form-label">Name <span style="color: red;">*</span></label>
                                 <div class="col-sm-9">
-                                    <input type="text" class="form-control" name="name" placeholder="Name" required>
+                                    <input type="text" class="form-control" name="name" placeholder="Enter Name"
+                                        required>
                                 </div>
                             </div>
 
