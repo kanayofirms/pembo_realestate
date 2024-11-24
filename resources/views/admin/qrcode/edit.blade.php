@@ -14,7 +14,7 @@
 
                         <h6 class="card-title">Edit QRCode</h6>
 
-                        <form class="forms-sample" method="POST" action="{{ url('admin/qrcode/edit' . $getRecord->id) }}">
+                        <form class="forms-sample" method="POST" action="{{ url('admin/qrcode/edit/' . $getRecord->id) }}">
                             {{ csrf_field() }}
                             <div class="row mb-3">
                                 <label class="col-sm-3 col-form-label">Title <span style="color: red;">*</span></label>
