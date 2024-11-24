@@ -72,4 +72,11 @@ class LocationController extends Controller
 
         return redirect('admin/state')->with('success', "State Successfully Added!");
     }
+
+    public function state_edit($id)
+    {
+        $data['getCountries'] = CountriesModel::get();
+        $data['getRecord'] = StateModel::find($id);
+        return view('admin.state.edit', $data);
+    }
 }
