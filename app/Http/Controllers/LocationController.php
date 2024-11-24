@@ -59,6 +59,17 @@ class LocationController extends Controller
 
     public function state_add(Request $request)
     {
-        return view('admin.state.add');
+        $data['getCountries'] = CountriesModel::get();
+        return view('admin.state.add', $data);
+    }
+
+    public function state_store(Request $request)
+    {
+        $save = new StateModel;
+        $save->countries_id = trim($request->countries_id);
+        $save->state_name = trim($request->state_name);
+        $save->save();
+
+        return redirect('admin/state')->with('success', "State Successfully Added!");
     }
 }
