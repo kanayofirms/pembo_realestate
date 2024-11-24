@@ -6,7 +6,7 @@
         <nav class="page-breadcrumb">
 
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="#">Colour</a></li>
+                <li class="breadcrumb-item"><a href="#">Countries</a></li>
                 <li class="breadcrumb-item active" aria-current="page">Countries List</li>
             </ol>
         </nav>
@@ -31,9 +31,7 @@
                                 <thead>
                                     <tr>
                                         <th>#</th>
-                                        <th>Name</th>
-
-
+                                        <th>Country Name</th>
                                         <th>Created At</th>
                                         <th>Updated At</th>
                                         <th>Action</th>
