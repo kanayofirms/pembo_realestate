@@ -56,4 +56,9 @@ class LocationController extends Controller
         $data['getRecord'] = StateModel::get();
         return view('admin.state.list', $data);
     }
+
+    public function state_add(Request $request)
+    {
+        return view('admin.state.add');
+    }
 }
