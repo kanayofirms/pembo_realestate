@@ -42,6 +42,7 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::get('admin/countries/delete/{id}', [LocationController::class, 'countries_delete']);
 
     Route::get('admin/state', [LocationController::class, 'state_list']);
+    Route::get('admin/state/add', [LocationController::class, 'state_add']);
     // Address End
     Route::get('admin/dashboard', [AdminController::class, 'AdminDashboard'])->name('admin.dashboard');
     Route::get('admin/logout', [AdminController::class, 'AdminLogout'])->name('admin.logout');
