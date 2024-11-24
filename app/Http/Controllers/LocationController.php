@@ -53,7 +53,11 @@ class LocationController extends Controller
 
     public function state_list()
     {
-        $data['getRecord'] = StateModel::get();
+        $data['getRecord'] = StateModel::select('state.*', 'countries.country_name')
+            ->join('countries', 'countries.id', '=', 'state.countries_id')
+            ->orderBy('state.state_name', 'desc')  // Optional: ordering states alphabetically
+            ->get();
+
         return view('admin.state.list', $data);
     }
 
