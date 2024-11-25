@@ -93,4 +93,12 @@ class LocationController extends Controller
 
         return redirect('admin/state')->with('success', "State Successfully Updated!");
     }
+
+    public function state_delete($id)
+    {
+        $recordDelete = StateModel::find($id);
+        $recordDelete->delete();
+
+        return redirect('admin/state')->with('success', 'Record Successfully Deleted!');
+    }
 }
