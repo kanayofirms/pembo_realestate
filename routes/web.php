@@ -50,6 +50,7 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
 
     Route::get('admin/city', [LocationController::class, 'city_list']);
     Route::get('admin/city/add', [LocationController::class, 'city_add']);
+    Route::get('get-states-record/{countryId}', [LocationController::class, 'get_state_name']);
     // Address End
     Route::get('admin/dashboard', [AdminController::class, 'AdminDashboard'])->name('admin.dashboard');
     Route::get('admin/logout', [AdminController::class, 'AdminLogout'])->name('admin.logout');
