@@ -101,4 +101,10 @@ class LocationController extends Controller
 
         return redirect('admin/state')->with('success', 'Record Successfully Deleted!');
     }
+
+    // City start
+    public function city_list()
+    {
+        return view('admin.city.list');
+    }
 }
