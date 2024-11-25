@@ -11,6 +11,56 @@
             </ol>
         </nav>
 
+        {{-- Search Start --}}
+        <div class="row">
+            <div class="col-lg-12 stretch-card">
+                <div class="card">
+                    <div class="card-body">
+                        <h6 class="card-title">Search City</h6>
+                        <form action="" method="GET">
+                            <div class="row">
+                                <div class="col-sm-2">
+                                    <div class="mb-3">
+                                        <label for="">ID</label>
+                                        <input type="text" name="id" class="form-control"
+                                            value="{{ Request()->id }}" placeholder="Enter ID">
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-3">
+                                    <div class="mb-3">
+                                        <label for="">Country Name</label>
+                                        <input type="text" name="country_name" class="form-control"
+                                            value="{{ Request()->country_name }}" placeholder="Enter Country Name">
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-3">
+                                    <div class="mb-3">
+                                        <label for="">State Name</label>
+                                        <input type="text" name="state_name" class="form-control"
+                                            value="{{ Request()->state_name }}" placeholder="Enter State Name">
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-3">
+                                    <div class="mb-3">
+                                        <label for="">City Name</label>
+                                        <input type="text" name="city_name" class="form-control"
+                                            value="{{ Request()->city_name }}" placeholder="Enter City Name">
+                                    </div>
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Search</button>
+                            <a href="{{ url('admin/city') }}" class="btn btn-danger">Reset</a>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br>
+        {{-- Search End --}}
+
         <div class="row">
             <div class="col-lg-12 stretch-card">
                 <div class="card">
@@ -40,7 +90,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($getRecord as $value)
+                                    @forelse ($getRecord as $value)
                                         <tr class="table-info text-dark">
                                             <td>{{ $value->id }}</td>
                                             <td>{{ $value->country_name }}</td>
@@ -61,7 +111,8 @@
                                                         </path>
                                                     </svg> <span class="">Edit</span></a>
 
-                                                <a class="dropdown-item" href="{{ url('admin/city/delete/' . $value->id) }}"
+                                                <a class="dropdown-item"
+                                                    href="{{ url('admin/city/delete/' . $value->id) }}"
                                                     onclick="return confirm('Are you sure you want to delete?')"><svg
                                                         xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                                         viewBox="0 0 24 24" fill="none" stroke="currentColor"
@@ -75,7 +126,11 @@
                                             </td>
 
                                         </tr>
-                                    @endforeach
+                                    @empty
+                                        <tr>
+                                            <td colspan="100%">No Record Found.</td>
+                                        </tr>
+                                    @endforelse
                                 </tbody>
                             </table>
                         </div>
