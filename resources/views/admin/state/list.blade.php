@@ -31,6 +31,7 @@
                                 <thead>
                                     <tr>
                                         <th>#</th>
+                                        <th>Country Name</th>
                                         <th>State Name</th>
                                         <th>Created At</th>
                                         <th>Updated At</th>
@@ -41,6 +42,7 @@
                                     @foreach ($getRecord as $value)
                                         <tr class="table-info text-dark">
                                             <td>{{ $value->id }}</td>
+                                            <td>{{ $value->country_name }}</td>
                                             <td>{{ $value->state_name }}</td>
                                             <td>{{ date('d-m-Y', strtotime($value->created_at)) }}</td>
                                             <td>{{ date('d-m-Y', strtotime($value->updated_at)) }}</td>
