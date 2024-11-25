@@ -107,4 +107,10 @@ class LocationController extends Controller
     {
         return view('admin.city.list');
     }
+
+    public function city_add(Request $request)
+    {
+        $data['getCountries'] = CountriesModel::get();
+        return view('admin.city.add', $data);
+    }
 }
