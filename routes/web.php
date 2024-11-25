@@ -52,6 +52,7 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::get('admin/city/add', [LocationController::class, 'city_add']);
     Route::get('get-states-record/{countryId}', [LocationController::class, 'get_state_name']);
     Route::post('admin/city/add', [LocationController::class, 'city_store']);
+    Route::get('admin/city/edit/{id}', [LocationController::class, 'city_edit']);
 
     // Address End
     Route::get('admin/dashboard', [AdminController::class, 'AdminDashboard'])->name('admin.dashboard');
