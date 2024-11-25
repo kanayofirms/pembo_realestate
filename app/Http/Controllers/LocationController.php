@@ -113,4 +113,10 @@ class LocationController extends Controller
         $data['getCountries'] = CountriesModel::get();
         return view('admin.city.add', $data);
     }
+
+    public function get_state_name($countryId, Request $request)
+    {
+        $states = StateModel::where('countries_id', $countryId)->get();
+        return response()->json($states);
+    }
 }
