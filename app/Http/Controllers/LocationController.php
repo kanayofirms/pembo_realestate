@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\StateModel;
 use Illuminate\Http\Request;
 use App\Models\CountriesModel;
+use App\Models\CityModel;
 
 class LocationController extends Controller
 {
@@ -112,6 +113,19 @@ class LocationController extends Controller
     {
         $data['getCountries'] = CountriesModel::get();
         return view('admin.city.add', $data);
+    }
+
+    public function city_store(Request $request)
+    {
+        // dd($request->all());
+        $save = new CityModel;
+        $save->countries_id = trim($request->countries_id);
+        $save->state_id = trim($request->state_id);
+        $save->city_name = trim($request->city_name);
+
+        $save->save();
+
+        return redirect('admin/city')->with('success', "City Successfully Added!");
     }
 
     public function get_state_name($countryId, Request $request)
