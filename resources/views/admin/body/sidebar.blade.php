@@ -86,6 +86,13 @@
                  </a>
              </li>
 
+             <li class="nav-item">
+                 <a href="{{ url('admin/city') }}" class="nav-link">
+                     <i class="link-icon" data-feather="box"></i>
+                     <span class="link-title">City</span>
+                 </a>
+             </li>
+
              <li class="nav-item nav-category">Notification</li>
              <li class="nav-item" @if (Request::segment(2) == 'notification') active @endif>
                  <a href="{{ url('admin/notification') }}" class="nav-link">
