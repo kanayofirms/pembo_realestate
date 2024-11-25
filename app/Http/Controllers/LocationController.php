@@ -129,6 +129,16 @@ class LocationController extends Controller
         return redirect('admin/city')->with('success', "City Successfully Added!");
     }
 
+    public function city_edit($id, Request $request)
+    {
+        $data['getCountries'] = CountriesModel::get();
+        $data['getRecord'] = CityModel::find($id);
+        $data['cityName'] = $data['getRecord']->state_id;
+
+        $data['getCityRecord'] = StateModel::where('state.id', '=', $data['cityName'])->get();
+        return view('admin.city.edit', $data);
+    }
+
     public function get_state_name($countryId, Request $request)
     {
         $states = StateModel::where('countries_id', $countryId)->get();
