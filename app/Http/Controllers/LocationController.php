@@ -106,7 +106,8 @@ class LocationController extends Controller
     // City start
     public function city_list()
     {
-        return view('admin.city.list');
+        $data['getRecord'] = CityModel::getRecordJoin();
+        return view('admin.city.list', $data);
     }
 
     public function city_add(Request $request)
