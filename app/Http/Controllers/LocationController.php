@@ -6,6 +6,7 @@ use App\Models\StateModel;
 use Illuminate\Http\Request;
 use App\Models\CountriesModel;
 use App\Models\CityModel;
+use App\Models\AddressModel;
 
 class LocationController extends Controller
 {
@@ -179,6 +180,18 @@ class LocationController extends Controller
     {
         $data['getRecord'] = CountriesModel::get();
         return view('admin.address.add', $data);
+    }
+
+    public function admin_address_store(Request $request)
+    {
+        $save = new AddressModel;
+        $save->country_id = trim($request->country_id);
+        $save->state_id = trim($request->state_id);
+        $save->city_id = trim($request->city_id);
+
+        $save->save();
+
+        return redirect('admin/address')->with('success', 'Address Successfully Added!');
     }
 
     public function get_states($id)
