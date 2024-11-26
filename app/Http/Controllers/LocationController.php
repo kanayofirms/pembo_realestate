@@ -139,6 +139,18 @@ class LocationController extends Controller
         return view('admin.city.edit', $data);
     }
 
+    public function city_update($id, Request $request)
+    {
+        // dd($request->all());
+        $save = CityModel::find($id);
+        $save->countries_id = trim($request->countries_id);
+        $save->state_id = trim($request->state_id);
+        $save->city_name = trim($request->city_name);
+        $save->save();
+
+        return redirect('admin/city')->with('success', "City Successfully Updated!");
+    }
+
     public function get_state_name($countryId, Request $request)
     {
         $states = StateModel::where('countries_id', $countryId)->get();
