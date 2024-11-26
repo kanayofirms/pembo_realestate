@@ -180,4 +180,10 @@ class LocationController extends Controller
         $data['getRecord'] = CountriesModel::get();
         return view('admin.address.add', $data);
     }
+
+    public function get_states($id)
+    {
+        $states = StateModel::where('countries_id', $id)->get();
+        return response()->json($states);
+    }
 }
