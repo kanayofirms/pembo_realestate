@@ -174,4 +174,9 @@ class LocationController extends Controller
     {
         return view('admin.address.list');
     }
+
+    public function admin_address_add(Request $request)
+    {
+        return view('admin.address.add');
+    }
 }
