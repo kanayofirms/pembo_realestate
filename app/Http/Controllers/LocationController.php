@@ -54,6 +54,7 @@ class LocationController extends Controller
         return redirect('admin/countries')->with('success', "Record Successfully Deleted!");
     }
 
+    // State Start
     public function state_list()
     {
         $data['getRecord'] = StateModel::select('state.*', 'countries.country_name')
@@ -152,6 +153,14 @@ class LocationController extends Controller
         $save->save();
 
         return redirect('admin/city')->with('success', "City Successfully Updated!");
+    }
+
+    public function city_delete($id)
+    {
+        $deleteRecord = CityModel::find($id);
+        $deleteRecord->delete();
+
+        return redirect('admin/city')->with('success', 'City Successfully Deleted!');
     }
 
     public function get_state_name($countryId, Request $request)
