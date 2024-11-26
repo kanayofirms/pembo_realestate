@@ -186,4 +186,10 @@ class LocationController extends Controller
         $states = StateModel::where('countries_id', $id)->get();
         return response()->json($states);
     }
+
+    public function get_cities($id)
+    {
+        $cities = CityModel::where('state_id', $id)->get();
+        return response()->json($cities);
+    }
 }
