@@ -48,6 +48,8 @@ class LocationController extends Controller
     {
         $recordDelete = CountriesModel::find($id);
         $recordDelete->delete();
+        StateModel::where('state.countries_id', '=', $id)->delete();
+        CityModel::where('city.countries_id', '=', $id)->delete();
 
         return redirect('admin/countries')->with('success', "Record Successfully Deleted!");
     }
