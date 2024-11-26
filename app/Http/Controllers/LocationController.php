@@ -177,6 +177,7 @@ class LocationController extends Controller
 
     public function admin_address_add(Request $request)
     {
-        return view('admin.address.add');
+        $data['getRecord'] = CountriesModel::get();
+        return view('admin.address.add', $data);
     }
 }
