@@ -75,7 +75,7 @@
              <li class="nav-item">
                  <a href="{{ url('admin/countries') }}" class="nav-link">
                      <i class="link-icon" data-feather="box"></i>
-                     <span class="link-title">Countries</span>
+                     <span class="link-title">Country</span>
                  </a>
              </li>
 
