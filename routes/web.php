@@ -37,6 +37,7 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::get('admin/address', [LocationController::class, 'admin_address']);
     Route::get('admin/address/add', [LocationController::class, 'admin_address_add']);
     Route::get('get-states/{countryId}', [LocationController::class, 'get_states']);
+    Route::get('get-cities/{stateId}', [LocationController::class, 'get_cities']);
     // address menu end
 
     // Address Start
