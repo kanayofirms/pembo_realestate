@@ -35,6 +35,7 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
 
     // address menu start
     Route::get('admin/address', [LocationController::class, 'admin_address']);
+    Route::get('admin/address/add', [LocationController::class, 'admin_address_add']);
     // address menu end
 
     // Address Start
