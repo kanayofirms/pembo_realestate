@@ -168,4 +168,10 @@ class LocationController extends Controller
         $states = StateModel::where('countries_id', $countryId)->get();
         return response()->json($states);
     }
+
+    // Address menu start
+    public function admin_address()
+    {
+        return view('admin.address.list');
+    }
 }
