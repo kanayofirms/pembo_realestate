@@ -33,6 +33,10 @@ require __DIR__ . '/auth.php';
 
 Route::middleware(['auth', 'role:admin'])->group(function () {
 
+    // address menu start
+    Route::get('admin/address', [LocationController::class, 'admin_address']);
+    // address menu end
+
     // Address Start
     Route::get('admin/countries', [LocationController::class, 'countries_index']);
     Route::get('admin/countries/add', [LocationController::class, 'countries_add']);
