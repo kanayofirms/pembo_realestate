@@ -169,6 +169,81 @@
         });
     </script>
 
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#country_add').on('change', function() {
+                var countryId = this.value;
+
+                // Reset state and city dropdowns
+                $('#state_add').html('<option value="">Select State</option>');
+                $('#city_add').html('<option value="">Select City</option>');
+
+                // Fetch states based on selected country
+                if (countryId) {
+                    var url = "{{ url('get-states') }}" + "/" + countryId;
+                    $.ajax({
+                        url: url,
+                        type: 'GET',
+                        success: function(data) {
+                            if (data && data.length > 0) {
+                                $('#state_add').append(
+                                    data.map(function(state) {
+                                        return (
+                                            '<option value="' +
+                                            state.id +
+                                            '">' +
+                                            state.state_name +
+                                            '</option>'
+                                        );
+                                    }).join('')
+                                );
+                            }
+                        },
+                        error: function() {
+                            alert('Error fetching states. Please try again.');
+                        },
+                    });
+                }
+            });
+
+            $('#state_add').on('change', function() {
+                var stateId = this.value;
+
+                // Reset city dropdown
+                $('#city_add').html('<option value="">Select City</option>');
+
+                // Fetch cities based on selected state
+                if (stateId) {
+                    var url = "{{ url('get-cities/') }}" + "/" + stateId;
+                    $.ajax({
+                        url: url,
+                        type: 'GET',
+                        success: function(data) {
+                            if (data && data.length > 0) {
+                                $('#city_add').append(
+                                    data.map(function(city) {
+                                        return (
+                                            '<option value="' +
+                                            city.id +
+                                            '">' +
+                                            city.city_name +
+                                            '</option>'
+                                        );
+                                    }).join('')
+                                );
+                            }
+                        },
+                        error: function() {
+                            alert('Error fetching cities. Please try again.');
+                        },
+                    });
+                }
+            });
+        });
+    </script>
+
+
+
 </body>
 
 </html>
