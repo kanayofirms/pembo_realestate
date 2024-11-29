@@ -22,7 +22,7 @@
                                 <label class="col-sm-3 col-form-label">Country Name <span
                                         style="color: red;">*</span></label>
                                 <div class="col-sm-9">
-                                    <select id="country_add" name="country_id" class="form-control" required>
+                                    <select id="country_add" name="countries_id" class="form-control" required>
                                         <option value="">Select Country</option>
                                         @foreach ($getRecord as $value)
                                             <option value="{{ $value->id }}">{{ $value->country_name }}</option>
