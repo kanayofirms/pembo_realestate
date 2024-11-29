@@ -173,7 +173,8 @@ class LocationController extends Controller
     // Address menu start
     public function admin_address()
     {
-        return view('admin.address.list');
+        $data['getRecord'] = AddressModel::getRecordAll();
+        return view('admin.address.list', $data);
     }
 
     public function admin_address_add(Request $request)
