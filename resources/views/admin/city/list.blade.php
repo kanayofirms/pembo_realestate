@@ -81,7 +81,7 @@
                                 <thead>
                                     <tr>
                                         <th>ID</th>
-                                        <th>Countries Name</th>
+                                        <th>Country Name</th>
                                         <th>State Name</th>
                                         <th>City Name</th>
                                         <th>Created At</th>
