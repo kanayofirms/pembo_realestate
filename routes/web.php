@@ -41,6 +41,7 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::post('admin/address/add', [LocationController::class, 'admin_address_store']);
     Route::get('admin/address/edit/{id}', [LocationController::class, 'admin_address_edit']);
     Route::post('admin/address/edit/{id}', [LocationController::class, 'admin_address_update']);
+    Route::get('admin/address/delete/{id}', [LocationController::class, 'admin_address_delete']);
     // address menu end
 
     // Address Start
