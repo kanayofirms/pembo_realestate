@@ -12,6 +12,7 @@ use App\Http\Controllers\ColourController;
 use App\Http\Controllers\OrdersController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\LocationController;
+use App\Http\Controllers\SendPDFController;
 
 use Illuminate\Support\Facades\Route;
 
@@ -32,6 +33,10 @@ Route::middleware('auth')->group(function () {
 require __DIR__ . '/auth.php';
 
 Route::middleware(['auth', 'role:admin'])->group(function () {
+
+    // PDF
+    Route::get('admin/send_pdf', [SendPDFController::class, 'send_pdf']);
+    // PDF End
 
     // address menu start
     Route::get('admin/address', [LocationController::class, 'admin_address']);
