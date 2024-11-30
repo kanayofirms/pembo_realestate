@@ -40,6 +40,7 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::get('get-cities/{stateId}', [LocationController::class, 'get_cities']);
     Route::post('admin/address/add', [LocationController::class, 'admin_address_store']);
     Route::get('admin/address/edit/{id}', [LocationController::class, 'admin_address_edit']);
+    Route::post('admin/address/edit/{id}', [LocationController::class, 'admin_address_update']);
     // address menu end
 
     // Address Start
