@@ -7,6 +7,11 @@ use Illuminate\Http\Request;
 
 class BlogController extends Controller
 {
+    public function blog_truncate()
+    {
+        BlogModel::truncate();
+        return redirect()->back()->with('success', "All Blogs Deleted!");
+    }
     public function list_blog()
     {
         $data['getRecord'] = BlogModel::getAllRecord();
