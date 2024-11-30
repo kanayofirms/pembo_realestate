@@ -204,6 +204,16 @@ class LocationController extends Controller
         return view('admin.address.edit', $data);
     }
 
+    public function admin_address_update($id, Request $request)
+    {
+        $save = AddressModel::find($id);
+        $save->countries_id = trim($request->countries_id);
+        $save->state_id = trim($request->state_id);
+        $save->city_id = trim($request->city_id);
+        $save->save();
+
+        return redirect('admin/address')->with('success', "Address Successfully Updated!");
+    }
     public function get_states($id)
     {
         $states = StateModel::where('countries_id', $id)->get();
