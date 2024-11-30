@@ -214,6 +214,14 @@ class LocationController extends Controller
 
         return redirect('admin/address')->with('success', "Address Successfully Updated!");
     }
+
+    public function admin_address_delete($id)
+    {
+        $recordDelete = AddressModel::find($id);
+        $recordDelete->delete();
+
+        return redirect('admin/address')->with('success', "Record Successfully Deleted!");
+    }
     public function get_states($id)
     {
         $states = StateModel::where('countries_id', $id)->get();
