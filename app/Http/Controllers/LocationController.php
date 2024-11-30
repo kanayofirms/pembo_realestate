@@ -186,13 +186,22 @@ class LocationController extends Controller
     public function admin_address_store(Request $request)
     {
         $save = new AddressModel;
-        $save->country_id = trim($request->country_id);
+        $save->countries_id = trim($request->countries_id);
         $save->state_id = trim($request->state_id);
         $save->city_id = trim($request->city_id);
 
         $save->save();
 
         return redirect('admin/address')->with('success', 'Address Successfully Added!');
+    }
+
+    public function admin_address_edit($id)
+    {
+        $data['getRecord'] = CountriesModel::get();
+        $data['getRecordAdd'] = AddressModel::find($id);
+        $data['getState'] = StateModel::where('id', '=', $data['getRecordAdd']->state_id)->get();
+        $data['getCity'] = CityModel::where('id', '=', $data['getRecordAdd']->city_id)->get();
+        return view('admin.address.edit', $data);
     }
 
     public function get_states($id)
