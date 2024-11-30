@@ -4,7 +4,7 @@
         @include('_message')
         <nav class="page-breadcrumb">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="{{ url('admin/notification') }}">SMTP Setting</a></li>
+                <li class="breadcrumb-item"><a href="{{ url('admin/smtp') }}">SMTP Setting</a></li>
                 <li class="breadcrumb-item active" aria-current="page">SMTP Setting</li>
             </ol>
         </nav>
