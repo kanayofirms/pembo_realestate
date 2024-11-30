@@ -62,8 +62,12 @@
                         <div class="d-flex justify-content-between align-items-center flex-wrap">
                             <h4 class="card-title">Blog List</h4>
                             <div class="d-flex align-items-center">
+                                <a href="{{ url('admin/blog/truncate') }}" class="btn btn-danger">
+                                    Delete All
+                                </a>
+                                &nbsp;&nbsp;
                                 <a href="{{ url('admin/blog/add') }}" class="btn btn-primary">
-                                    Add Blog
+                                    Add Blogs
                                 </a>
                             </div>
                         </div>
