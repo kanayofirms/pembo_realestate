@@ -39,6 +39,9 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::post('admin/send_pdf_sent', [SendPDFController::class, 'send_pdf_sent']);
     // PDF End
 
+    // Blog Delete All
+    Route::get('admin/blog/truncate', [BlogController::class, 'blog_truncate']);
+
     // address menu start
     Route::get('admin/address', [LocationController::class, 'admin_address']);
     Route::get('admin/address/add', [LocationController::class, 'admin_address_add']);
