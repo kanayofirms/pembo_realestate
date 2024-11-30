@@ -11,6 +11,39 @@
             </ol>
         </nav>
 
+        {{-- Search Start --}}
+        <div class="row">
+            <div class="col-lg-12 stretch-card">
+                <div class="card">
+                    <div class="card-body">
+                        <h6 class="card-title">Search Week Time</h6>
+                        <form action="" method="get">
+                            <div class="row">
+                                <div class="col-sm-2">
+                                    <div class="mb-3">
+                                        <label for="" class="form-label">ID</label>
+                                        <input type="text" name="id" class="form-control"
+                                            value="{{ Request()->id }}" placeholder="Enter ID">
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-4">
+                                    <div class="mb-3">
+                                        <label for="" class="form-label">Week Time Name</label>
+                                        <input type="text" name="name" class="form-control"
+                                            value="{{ Request()->name }}" placeholder="Enter Week Time Name">
+                                    </div>
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Search</button>
+                            <a href="{{ url('admin/week_time') }}" class="btn btn-danger">Reset</a>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {{-- Search End --}}
+
         <div class="row">
             <div class="col-lg-12 stretch-card">
                 <div class="card">
@@ -38,7 +71,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($getRecord as $value)
+                                    @forelse ($getRecord as $value)
                                         <tr class="table-info text-dark">
                                             <td>{{ $value->id }}</td>
                                             <td>{{ $value->name }}</td>
@@ -72,13 +105,14 @@
                                             </td>
 
                                         </tr>
-                                    @endforeach
+                                    @empty
+                                        <tr>
+                                            <td colspan="100%">No Record Found.</td>
+                                        </tr>
+                                    @endforelse
+
                                 </tbody>
                             </table>
-                        </div>
-                        <div style="padding: 20px; float: right;">
-                            {{-- {!! $getRecord->appends(Illuminate\Support\Facades\Request::except('page'))->links() !!} --}}
-
                         </div>
 
                     </div>
