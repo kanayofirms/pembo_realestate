@@ -36,6 +36,7 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
 
     // PDF
     Route::get('admin/send_pdf', [SendPDFController::class, 'send_pdf']);
+    Route::post('admin/send_pdf_sent', [SendPDFController::class, 'send_pdf_sent']);
     // PDF End
 
     // address menu start
