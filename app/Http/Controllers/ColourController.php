@@ -10,7 +10,7 @@ class ColourController extends Controller
 {
     public function colour_list(Request $request)
     {
-        $data['getRecord'] = ColourModel::get();
+        $data['getRecord'] = ColourModel::getRecordAll();
         return view('admin.colour.list', $data);
     }
 
