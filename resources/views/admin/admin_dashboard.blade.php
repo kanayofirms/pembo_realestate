@@ -40,6 +40,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tinymce@7.2.1/skins/ui/oxide/content.min.css">
 
+    @yield('style')
+
 </head>
 
 <body>
@@ -242,6 +244,29 @@
         });
     </script>
 
+    <script type="text/javascript">
+        $('.statusCheckbox').on('change', function() {
+            var status = $(this).is(':checked') ? 1 : 0;
+            var itemId = $(this).data('id');
+            // alert(itemId);
+            $.ajax({
+                url: '{{ url('admin/colour/change_status') }}',
+                type: 'POST',
+                data: {
+                    _token: '{{ csrf_token() }}',
+                    id: itemId,
+                    status: status
+                },
+                success: function(response) {
+                    alert(response.message);
+                },
+                error: function(xhr) {
+                    alert('Error:' + xhr.status + '-' + xhr.statusText)
+                }
+            });
+
+        });
+    </script>
 
 
 </body>
