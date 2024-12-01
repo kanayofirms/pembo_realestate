@@ -1,5 +1,54 @@
 @extends('admin.admin_dashboard')
 
+@section('style')
+    <style type="text/css">
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 3.75rem; /* 60px */
+            height: 2.125rem; /* 34px */
+        }
+
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: 0.4s;
+            border-radius: 2rem; /* 34px / 2 for border-radius */
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 1.625rem; /* 26px */
+            width: 1.625rem; /* 26px */
+            left: 0.25rem; /* 4px */
+            bottom: 0.25rem; /* 4px */
+            background-color: white;
+            transition: 0.4s;
+            border-radius: 50%;
+        }
+
+        input:checked + .slider {
+            background-color: #2196F3;
+        }
+
+        input:checked + .slider:before {
+            transform: translateX(2rem); /* 26px */
+        }
+    </style>
+@endsection
+
 @section('admin')
     <div class="page-content">
         @include('_message')
@@ -10,6 +59,49 @@
                 <li class="breadcrumb-item active" aria-current="page">Colour List</li>
             </ol>
         </nav>
+
+        {{-- Search Box Start --}}
+        <div class="row">
+            <div class="col-lg-12 stretch-card">
+                <div class="card">
+                    <div class="card-body">
+                        <h6 class="card-title">Search Blog</h6>
+                        <form action="" action="">
+                            <div class="row">
+                                <div class="col-sm-2">
+                                    <div class="mb-3">
+                                        <label for="" class="form-label">ID</label>
+                                        <input type="text" name="id" class="form-control"
+                                            value="{{ Request()->id }}" placeholder="Enter ID">
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-3">
+                                    <div class="mb-3">
+                                        <label for="" class="form-label">Name</label>
+                                        <input type="text" name="name" class="form-control"
+                                            value="{{ Request()->name }}" placeholder="Enter Name">
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-3">
+                                    <div class="mb-3">
+                                        <label for="" class="form-label">Created At</label>
+                                        <input type="date" name="created_at" class="form-control"
+                                            value="{{ Request()->created_at }}">
+                                    </div>
+                                </div>
+
+                            </div>
+                            <button type="submit" class="btn btn-primary">Search</button>
+                            <a href="{{ url('admin/colour') }}" class="btn btn-danger">Reset</a>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {{-- Search Box End --}}
+        <br>
 
         <div class="row">
             <div class="col-lg-12 stretch-card">
@@ -41,17 +133,22 @@
                                     <tr>
                                         <th>#</th>
                                         <th>Name</th>
-
-
+                                        <th>Status</th>
                                         <th>Created At</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($getRecord as $value)
+                                    @forelse ($getRecord as $value)
                                         <tr class="table-info text-dark">
                                             <td>{{ $value->id }}</td>
                                             <td>{{ $value->name }}</td>
+                                            <td>
+                                                <label class="switch">
+                                                    <input type="checkbox" class="statusCheckbox" data-id="{{ $value->id }}" {{ $value->status ? 'checked' : '' }}>
+                                                    <span class="slider"></span>
+                                                </label>
+                                            </td>
                                             <td>{{ date('d-m-Y', strtotime($value->created_at)) }}</td>
 
                                             <td>
@@ -82,7 +179,11 @@
                                             </td>
 
                                         </tr>
-                                    @endforeach
+                                    @empty
+                                        <tr>
+                                            <td colspan="100%">No Record Found.</td>
+                                        </tr>
+                                    @endforelse
                                 </tbody>
                             </table>
                         </div>
