@@ -155,6 +155,7 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::get('admin/colour/edit/{id}', [ColourController::class, 'edit_colour']);
     Route::post('admin/colour/edit/{id}', [ColourController::class, 'update_colour']);
     Route::get('admin/colour/delete/{id}', [ColourController::class, 'delete_colour']);
+    Route::post('admin/colour/change_status', [ColourController::class, 'change_status']);
     // Colour End
 
     // Order Start
