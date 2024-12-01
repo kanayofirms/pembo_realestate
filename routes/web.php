@@ -13,6 +13,7 @@ use App\Http\Controllers\OrdersController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\LocationController;
 use App\Http\Controllers\SendPDFController;
+use App\Http\Controllers\TransactionsController;
 
 use Illuminate\Support\Facades\Route;
 
@@ -33,6 +34,10 @@ Route::middleware('auth')->group(function () {
 require __DIR__ . '/auth.php';
 
 Route::middleware(['auth', 'role:admin'])->group(function () {
+
+    // Transactions Start
+    Route::get('admin/transactions', [TransactionsController::class, 'transactions_index']);
+    // Transactions End
 
     // PDF
     Route::get('admin/send_pdf', [SendPDFController::class, 'send_pdf']);
