@@ -48,11 +48,21 @@ class TransactionsController extends Controller
         }
 
         // Execute the query
-        $data['getRecord'] = $query->get();
+        $data['getRecord'] = $query->where('transactions.is_delete', '=', 0)->get();
 
         return view('admin.transactions.list', $data);
     }
 
+    public function transactions_delete($id)
+    {
+        $softDelete = TransactionsModel::find($id);
+        $softDelete->is_delete = 1;
+        $softDelete->save();
+
+        return redirect()->back()->with('success', 'Record Successfully Soft Deleted!');
+    }
+
+    // Agent Side Code
     public function agent_transactions_add(Request $request)
     {
         return view('agent.transactions.add');
