@@ -51,4 +51,8 @@ class TransactionsController extends Controller
 
         return view('admin.transactions.list', $data);
     }
+
+    public function agent_transactions_add(Request $request){
+        return view('agent.transactions.add');
+    }
 }
