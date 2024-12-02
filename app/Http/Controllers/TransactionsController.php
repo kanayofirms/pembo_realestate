@@ -53,6 +53,12 @@ class TransactionsController extends Controller
         return view('admin.transactions.list', $data);
     }
 
+    public function transactions_edit($id)
+    {
+        $data['getRecord'] = TransactionsModel::find($id);
+        return view('admin.transactions.edit', $data);
+    }
+
     public function transactions_delete($id)
     {
         $softDelete = TransactionsModel::find($id);
