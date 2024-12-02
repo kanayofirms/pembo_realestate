@@ -195,6 +195,7 @@ Route::middleware(['auth', 'role:agent'])->group(function () {
     Route::get('agent/logout', [AdminController::class, 'AdminLogout'])->name('admin.logout');
     Route::get('agent/email/inbox', [AdminController::class, 'agent_email_inbox']);
     Route::get('agent/transactions', [TransactionsController::class, 'agent_transactions_add']);
+    Route::post('admin/transactions/add', [TransactionsController::class, 'agent_transactions_store']);
 });
 
 Route::get('set_new_password/{token}', [AdminController::class, 'set_new_password']);
