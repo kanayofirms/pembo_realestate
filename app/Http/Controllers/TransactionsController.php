@@ -53,11 +53,13 @@ class TransactionsController extends Controller
         return view('admin.transactions.list', $data);
     }
 
-    public function agent_transactions_add(Request $request){
+    public function agent_transactions_add(Request $request)
+    {
         return view('agent.transactions.add');
     }
 
-    public function agent_transactions_store(Request $request){
+    public function agent_transactions_store(Request $request)
+    {
         $save = new TransactionsModel;
         $save->user_id = Auth::user()->id;
         $save->order_number = trim($request->order_number);
@@ -66,6 +68,12 @@ class TransactionsController extends Controller
         $save->is_payment = trim($request->is_payment);
         $save->save();
 
-        return redirect()->back()->with('succes', 'Transactions Successfully Added!');
+        return redirect('agent/transactions_list')->with('success', 'Transactions Successfully Added!');
+    }
+
+    public function agent_transactions_list(Request $request)
+    {
+        $data['getRecord'] = TransactionsModel::getAgentRecord(Auth::user()->id);
+        return view('agent.transactions.list', $data);
     }
 }
