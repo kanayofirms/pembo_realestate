@@ -61,6 +61,13 @@
                  </a>
              </li>
 
+             <li class="nav-item">
+                 <a href="{{ url('admin/full_calendar') }}" class="nav-link">
+                     <i class="link-icon" data-feather="box"></i>
+                     <span class="link-title">Full Calendar</span>
+                 </a>
+             </li>
+
              <li class="nav-item nav-category">User Week</li>
              <li class="nav-item" @if (Request::segment(2) == 'week') active @endif>
                  <a href="{{ url('admin/week') }}" class="nav-link">
