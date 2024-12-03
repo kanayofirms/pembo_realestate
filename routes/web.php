@@ -208,6 +208,8 @@ Route::middleware(['auth', 'role:agent'])->group(function () {
     Route::get('agent/transactions', [TransactionsController::class, 'agent_transactions_add']);
     Route::post('agent/transactions/add', [TransactionsController::class, 'agent_transactions_store']);
     Route::get('agent/transactions_list', [TransactionsController::class, 'agent_transactions_list']);
+
+    Route::delete('transactions_delete/{id}', [TransactionsController::class, 'destroy'])->name('transactions.destroy');
 });
 
 Route::get('set_new_password/{token}', [AdminController::class, 'set_new_password']);
