@@ -7,6 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="description" content="Responsive HTML Admin Dashboard Template based on Bootstrap 5">
+
+    <meta name="csrf-token" content="{{ csrf_token() }}" />
     <meta name="author" content="NobleUI">
     <meta name="keywords"
         content="nobleui, bootstrap, bootstrap 5, bootstrap5, admin, dashboard, template, responsive, css, sass, html, theme, front-end, ui kit, web">
@@ -39,6 +41,7 @@
     <link rel="shortcut icon" href="{{ asset('assets/images/favicon.png') }}" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tinymce@7.2.1/skins/ui/oxide/content.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.css" />
 
     @yield('style')
 
@@ -90,6 +93,10 @@
         referrerpolicy="no-referrer"></script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tinymce/7.2.1/tinymce.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.js"></script>
 
     @yield('script')
     <script type="text/javascript">
@@ -267,6 +274,127 @@
 
         });
     </script>
+
+    <script>
+        $(document).ready(function() {
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr(
+                        'content') // Ensure the meta name matches
+                }
+            });
+
+            var calendar = $('#calendar').fullCalendar({
+                editable: true,
+                header: {
+                    left: 'prev,next today',
+                    center: 'title',
+                    right: 'month,agendaWeek,agendaDay'
+                },
+                events: '{{ url('admin/full_calendar') }}', // Route for fetching events
+                selectable: true,
+                selectHelper: true,
+                select: function(start, end, allDay) {
+                    var title = prompt('Event Title:');
+                    if (title) {
+                        var startFormatted = $.fullCalendar.formatDate(start, 'Y-MM-DD HH:mm:ss');
+                        var endFormatted = $.fullCalendar.formatDate(end, 'Y-MM-DD HH:mm:ss');
+
+                        $.ajax({
+                            url: "{{ url('admin/full_calendar/action') }}",
+                            type: "POST",
+                            data: {
+                                title: title,
+                                start: startFormatted,
+                                end: endFormatted,
+                                type: 'add'
+                            },
+                            success: function(data) {
+                                calendar.fullCalendar('refetchEvents');
+                                alert("Event Created Successfully");
+                            },
+                            error: function(xhr, status, error) {
+                                // console.error("Error:", error);
+                                alert("Failed to create event. Please try again.");
+                            }
+                        });
+                    }
+                },
+
+                editable: true,
+                eventResize: function(event, delta) {
+                    var start = $.fullCalendar.formatDate(event.start, 'Y-MM-DD HH:mm:ss');
+                    var end = $.fullCalendar.formatDate(event.end, 'Y-MM-DD HH:mm:ss');
+                    var title = event.title;
+                    var id = event.id;
+
+                    $.ajax({
+                        url: "{{ url('admin/full_calendar/action') }}",
+                        type: "POST",
+                        data: {
+                            title: title,
+                            start: startFormatted,
+                            end: endFormatted,
+                            id: id,
+                            type: 'update'
+                        },
+                        success: function(response) {
+                            calendar.fullCalendar('refetchEvents');
+                            alert("Event Updated Successfully");
+                        },
+                        error: function(xhr, status, error) {
+                            // console.error("Error:", error);
+                            alert("Failed to update event. Please try again.");
+                        }
+                    });
+                },
+                eventDrop: function(event, delta) {
+                    var start = $.fullCalendar.formatDate(event.start, 'Y-MM-DD HH:mm:ss');
+                    var end = $.fullCalendar.formatDate(event.end, 'Y-MM-DD HH:mm:ss');
+                    var title = event.title;
+                    var id = event.id;
+
+                    $.ajax({
+                        url: "{{ url('admin/full_calendar/action') }}",
+                        type: "POST",
+                        data: {
+                            title: title,
+                            start: startFormatted,
+                            end: endFormatted,
+                            id: id,
+                            type: 'update'
+                        },
+                        success: function(response) {
+                            calendar.fullCalendar('refetchEvents');
+                            alert("Event Updated Successfully");
+                        },
+                        error: function(xhr, status, error) {
+                            // console.error("Error:", error);
+                            alert("Failed to update event. Please try again.");
+                        }
+                    });
+                },
+                eventClick: function(event) {
+                    if (confirm("Are you sure you want to remove it?")) {
+                        var id = event.id;
+                        $.ajax({
+                            url: "{{ url('admin/full_calendar/action') }}",
+                            type: "POST",
+                            data: {
+                                id: id,
+                                type: "delete"
+                            },
+                            success: function(response) {
+                                calendar.fullCalendar('refetchEvents');
+                                alert("Event Deleted Successfully");
+                            }
+                        });
+                    }
+                }
+            });
+        });
+    </script>
+
 
 
 </body>
