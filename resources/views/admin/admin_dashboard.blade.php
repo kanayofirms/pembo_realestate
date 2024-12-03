@@ -98,6 +98,8 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.js"></script>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.2/bootstrap3-typeahead.min.js"></script>
+
     @yield('script')
     <script type="text/javascript">
         tinymce.init({
@@ -394,7 +396,24 @@
             });
         });
     </script>
+    <script type="text/javascript">
+        var path = "{{ url('admin/users/typeahead_autocomplete') }}";
 
+        $('#user_name').typeahead({
+            source: function(query, process) {
+                return $.get(path, {
+                        query: query
+                    })
+                    .done(function(data) {
+                        return process(data);
+                    })
+                    .fail(function(xhr, status, error) {
+                        console.error("Error fetching data: ", error);
+                        alert("Failed to load suggestions. Please try again.");
+                    });
+            }
+        });
+    </script>
 
 
 </body>
