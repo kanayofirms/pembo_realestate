@@ -14,6 +14,7 @@ use App\Http\Controllers\BlogController;
 use App\Http\Controllers\LocationController;
 use App\Http\Controllers\SendPDFController;
 use App\Http\Controllers\TransactionsController;
+use App\Http\Controllers\FullCalendarController;
 
 use Illuminate\Support\Facades\Route;
 
@@ -34,6 +35,9 @@ Route::middleware('auth')->group(function () {
 require __DIR__ . '/auth.php';
 
 Route::middleware(['auth', 'role:admin'])->group(function () {
+
+    // Full Calendar Start
+    Route::get('admin/full_calendar', [FullCalendarController::class, 'full_calendar']);
 
     // Transactions Start
     Route::get('admin/transactions', [TransactionsController::class, 'transactions_index']);
