@@ -36,6 +36,9 @@ require __DIR__ . '/auth.php';
 
 Route::middleware(['auth', 'role:admin'])->group(function () {
 
+    // AutoComplete Search
+    Route::get('admin/users/typeahead_autocomplete', [AdminController::class, 'typeahead_autocomplete']);
+
     // Full Calendar Start
     Route::get('admin/full_calendar', [FullCalendarController::class, 'full_calendar']);
     Route::post('admin/full_calendar/action', [FullCalendarController::class, 'action']);
