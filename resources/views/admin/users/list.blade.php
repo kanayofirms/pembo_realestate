@@ -135,6 +135,10 @@
 
         {{-- Search Box end --}}
 
+        <input type="text" name="user_name" id="user_name" class="form-control" placeholder="Enter Name..." />
+
+        <br>
+
         <div class="row">
             <div class="col-lg-12 stretch-card">
                 <div class="card">
