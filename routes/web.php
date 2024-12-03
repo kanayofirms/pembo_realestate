@@ -39,6 +39,7 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::get('admin/transactions', [TransactionsController::class, 'transactions_index']);
     Route::get('admin/transactions/delete/{id}', [TransactionsController::class, 'transactions_delete']);
     Route::get('admin/transactions/edit/{id}', [TransactionsController::class, 'transactions_edit']);
+    Route::post('admin/transactions/update/{id}', [TransactionsController::class, 'transactions_update']);
     // Transactions End
 
     // PDF
