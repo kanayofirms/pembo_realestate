@@ -64,8 +64,10 @@
                                         <label class="form-label">Payment Status</label>
                                         <select name="is_payment" class="form-control">
                                             <option value="">Select Payment Status</option>
-                                            <option {{ (Request()->is_payment == '0') ? 'selected' : '' }} value="0">Pending</option>
-                                            <option {{ (Request()->is_payment == '1') ? 'selected' : '' }} value="1">Completed</option>
+                                            <option {{ Request()->is_payment == '0' ? 'selected' : '' }} value="0">
+                                                Pending</option>
+                                            <option {{ Request()->is_payment == '1' ? 'selected' : '' }} value="1">
+                                                Completed</option>
                                         </select>
                                     </div>
                                 </div>
@@ -106,8 +108,8 @@
                             <h4 class="card-title">Transactions List</h4>
                             <div class="d-flex align-items-center">
 
-                                <a href="{{ url('admin/city/add') }}" class="btn btn-primary">
-                                    Add Transactions
+                                {{-- <a href="{{ url('admin/transactions/add') }}" class="btn btn-primary">
+                                    Add Transactions --}}
                                 </a>
                             </div>
                         </div>
@@ -153,28 +155,14 @@
 
                                             <td>
 
-                                                <a class="dropdown-item"
-                                                    href="{{ url('admin/city/edit/' . $value->id) }}"><svg
-                                                        xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                                        viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                                                        class="feather feather-edit-2 icon-sm me-2">
-                                                        <path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z">
-                                                        </path>
-                                                    </svg> <span class="">Edit</span></a>
+                                                <a class="btn btn-primary"
+                                                    href="{{ url('admin/transactions/edit/' . $value->id) }}"> <span
+                                                        class="">Edit</span></a>
 
-                                                <a class="dropdown-item"
-                                                    href="{{ url('admin/city/delete/' . $value->id) }}"
-                                                    onclick="return confirm('Are you sure you want to delete?')"><svg
-                                                        xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                                        viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                                                        class="feather feather-trash icon-sm me-2">
-                                                        <polyline points="3 6 5 6 21 6"></polyline>
-                                                        <path
-                                                            d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2">
-                                                        </path>
-                                                    </svg> <span class="">Delete</span></a>
+                                                <a class="btn btn-danger"
+                                                    href="{{ url('admin/transactions/delete/' . $value->id) }}"
+                                                    onclick="return confirm('Are you sure you want to delete?')"> <span
+                                                        class="">Delete</span></a>
                                             </td>
 
                                         </tr>
