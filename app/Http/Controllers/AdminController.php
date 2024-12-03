@@ -14,6 +14,19 @@ use Mail;
 
 class AdminController extends Controller
 {
+
+    public function typeahead_autocomplete(Request $request)
+    {
+        $request->validate([
+            'query' => 'required|string',
+        ]);
+
+        $query = $request->get('query');
+        $filter_data = User::where('name', 'LIKE', '%' . $query . '%')
+            ->pluck('name'); // This returns only the names, reducing overhead
+
+        return response()->json($filter_data);
+    }
     public function AdminDashboard()
     {
         $user = User::selectRaw('count(id) as count, DATE_FORMAT(created_at, "%Y-%m") as month')->groupBy('month')->orderBy('month', 'asc')->get();
