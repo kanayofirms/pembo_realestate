@@ -20,6 +20,25 @@ class AdminController extends Controller
     {
         return view('admin.change_password.update');
     }
+
+    public function change_password_update(Request $request)
+    {
+        $user = User::find(Auth::user()->id);
+
+        if (trim($request->new_password) == trim($request->confirm_password)) {
+            if (Hash::check($request->old_password, $user->password)) {
+                $user->password = Hash::make($request->new_password);
+                $user->save();
+
+                return redirect()->back()->with('success', 'Password Successfully Changed!');
+            } else {
+                return redirect()->back()->with('error', 'The old password you entered is incorrect. Please try again.');
+            }
+        } else {
+            return redirect()->back()->with('error', 'New password and confirm password do not match. Please try again.');
+        }
+    }
+
     public function typeahead_autocomplete(Request $request)
     {
         $request->validate([
