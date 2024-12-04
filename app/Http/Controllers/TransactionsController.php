@@ -8,6 +8,12 @@ use Auth;
 
 class TransactionsController extends Controller
 {
+
+    public function destroy($id)
+    {
+        TransactionsModel::find($id)->delete();
+        return redirect()->back();
+    }
     public function transactions_index(Request $request)
     {
         // Build the base query with the join
@@ -57,6 +63,18 @@ class TransactionsController extends Controller
     {
         $data['getRecord'] = TransactionsModel::find($id);
         return view('admin.transactions.edit', $data);
+    }
+
+    public function transactions_update($id, Request $request)
+    {
+        $save = TransactionsModel::find($id);
+        $save->order_number = trim($request->order_number);
+        $save->transaction_id = trim($request->transaction_id);
+        $save->amount = trim($request->amount);
+        $save->is_payment = trim($request->is_payment);
+        $save->save();
+
+        return redirect('admin/transactions')->with('success', 'Transactions Successfully Updated!');
     }
 
     public function transactions_delete($id)
