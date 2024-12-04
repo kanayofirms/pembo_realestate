@@ -10,7 +10,8 @@ class DiscountCodeController extends Controller
 {
     public function discount_code()
     {
-        $data['getRecord'] = DiscountCodeModel::get();
+        // $data['getRecord'] = DiscountCodeModel::get();
+        $data['getRecord'] = DiscountCodeModel::getAllRecord();
         return view('admin.discount_code.list', $data);
     }
 
