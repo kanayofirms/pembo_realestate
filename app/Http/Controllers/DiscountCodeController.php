@@ -10,4 +10,9 @@ class DiscountCodeController extends Controller
     {
         return view('admin.discount_code.list');
     }
+
+    public function discount_code_add()
+    {
+        return view('admin.discount_code.add');
+    }
 }
