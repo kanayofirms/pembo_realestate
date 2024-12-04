@@ -15,6 +15,11 @@ use Mail;
 class AdminController extends Controller
 {
 
+
+    public function change_password(Request $request)
+    {
+        return view('admin.change_password.update');
+    }
     public function typeahead_autocomplete(Request $request)
     {
         $request->validate([
