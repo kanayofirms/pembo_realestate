@@ -124,6 +124,7 @@
                                         <th>Payment Status</th>
                                         <th>Created At</th>
                                         <th>Updated At</th>
+                                        <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -149,8 +150,15 @@
                                             </td>
                                             <td>{{ date('d-m-Y', strtotime($value->created_at)) }}</td>
                                             <td>{{ date('d-m-Y', strtotime($value->updated_at)) }}</td>
-
-
+                                            <td>
+                                                <form action="{{ route('transactions.destroy', $value->id) }}"
+                                                    method="POST">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit"
+                                                        class="btn btn-danger btn-sm btn btn-delete">Delete</button>
+                                                </form>
+                                            </td>
                                         </tr>
                                     @empty
                                         <tr>
