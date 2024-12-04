@@ -15,6 +15,7 @@ use App\Http\Controllers\LocationController;
 use App\Http\Controllers\SendPDFController;
 use App\Http\Controllers\TransactionsController;
 use App\Http\Controllers\FullCalendarController;
+use App\Http\Controllers\DiscountCodeController;
 
 use Illuminate\Support\Facades\Route;
 
@@ -36,6 +37,8 @@ require __DIR__ . '/auth.php';
 
 Route::middleware(['auth', 'role:admin'])->group(function () {
 
+    // Discount Code
+    Route::get('admin/discount_code', [DiscountCodeController::class, 'discount_code']);
     // Change Password
     Route::get('admin/change_password', [AdminController::class, 'change_password']);
     Route::post('admin/change_password/update', [AdminController::class, 'change_password_update']);
