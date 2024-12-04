@@ -36,6 +36,9 @@ require __DIR__ . '/auth.php';
 
 Route::middleware(['auth', 'role:admin'])->group(function () {
 
+    // Change Password
+    Route::get('admin/change_password', [AdminController::class, 'change_password']);
+
     // AutoComplete Search
     Route::get('admin/users/typeahead_autocomplete', [AdminController::class, 'typeahead_autocomplete']);
 
