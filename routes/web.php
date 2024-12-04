@@ -38,6 +38,7 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
 
     // Change Password
     Route::get('admin/change_password', [AdminController::class, 'change_password']);
+    Route::post('admin/change_password/update', [AdminController::class, 'change_password_update']);
 
     // AutoComplete Search
     Route::get('admin/users/typeahead_autocomplete', [AdminController::class, 'typeahead_autocomplete']);
