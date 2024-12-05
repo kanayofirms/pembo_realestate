@@ -54,4 +54,13 @@ class DiscountCodeController extends Controller
 
         return redirect('admin/discount_code')->with('success', 'Discount Code Successfully Updated!');
     }
+
+    public function discount_code_delete($id, Request $request){
+        $deleteRecord = DiscountCodeModel::find($id);
+        // $deleteRecord->delete(); Permanent Delete
+        $deleteRecord->is_delete = 1;
+        $deleteRecord->save();
+
+        return redirect('admin/discount_code')->with('error', 'Record Successfully Deleted!');
+    }
 }
