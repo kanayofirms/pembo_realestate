@@ -43,6 +43,7 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::post('admin/discount_code/add', [DiscountCodeController::class, 'discount_code_store']);
     Route::get('admin/discount_code/edit/{id}', [DiscountCodeController::class, 'discount_code_edit']);
     Route::post('admin/discount_code/edit/{id}', [DiscountCodeController::class, 'discount_code_update']);
+    Route::get('admin/discount_code/delete/{id}', [DiscountCodeController::class, 'discount_code_delete']);
     // Change Password
     Route::get('admin/change_password', [AdminController::class, 'change_password']);
     Route::post('admin/change_password/update', [AdminController::class, 'change_password_update']);
