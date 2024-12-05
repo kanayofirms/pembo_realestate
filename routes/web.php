@@ -5,6 +5,7 @@ use App\Http\Controllers\AgentController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\EmailController;
+use App\Http\Controllers\SupportController;
 use App\Http\Controllers\UserTimeController;
 use App\Http\Controllers\QRCodeController;
 use App\Http\Controllers\SMTPController;
@@ -37,6 +38,9 @@ require __DIR__ . '/auth.php';
 
 Route::middleware(['auth', 'role:admin'])->group(function () {
 
+    // Support Start
+    Route::get('admin/support', [SupportController::class, 'support']);
+
     // Discount Code
     Route::get('admin/discount_code', [DiscountCodeController::class, 'discount_code']);
     Route::get('admin/discount_code/add', [DiscountCodeController::class, 'discount_code_add']);
@@ -44,6 +48,7 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::get('admin/discount_code/edit/{id}', [DiscountCodeController::class, 'discount_code_edit']);
     Route::post('admin/discount_code/edit/{id}', [DiscountCodeController::class, 'discount_code_update']);
     Route::get('admin/discount_code/delete/{id}', [DiscountCodeController::class, 'discount_code_delete']);
+
     // Change Password
     Route::get('admin/change_password', [AdminController::class, 'change_password']);
     Route::post('admin/change_password/update', [AdminController::class, 'change_password_update']);
