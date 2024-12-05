@@ -33,7 +33,7 @@ class DiscountCodeModel extends Model
             $return = $return->where('discount_code.discount_price', 'like', '%' . Request::get('discount_price') . '%');
         }
 
-        $return = $return->orderBy('discount_code.id', 'desc')
+        $return = $return->where('discount_code.is_delete', '=', 0)->orderBy('discount_code.id', 'desc')
             ->paginate(20);
 
         return $return;
