@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\DiscountCodeModel;
+use App\Models\User;
 use Auth;
 
 class DiscountCodeController extends Controller
@@ -32,5 +33,12 @@ class DiscountCodeController extends Controller
         $save->save();
 
         return redirect('admin/discount_code')->with('success', 'Discount Code Successfully Saved!');
+    }
+
+    public function discount_code_edit($id)
+    {
+        $data['getUser'] = User::get();
+        $data['getRecord'] = DiscountCodeModel::find($id);
+        return view('admin.discount_code.edit', $data);
     }
 }
