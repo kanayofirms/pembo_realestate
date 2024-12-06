@@ -12,12 +12,32 @@ class SupportModel extends Model
 
     protected $table = 'support';
 
-    static public function getSupportList($request){
+    static public function getSupportList($request)
+    {
         $return = self::select('support.*')
-            ->orderBy('id', 'desc')->paginate(20);
+            ->join('users', 'users.id', '=', 'support.user_id')
+            ->orderBy('support.id', 'desc');
 
-        return $return;
+        if (!empty($request->id)) {
+            $return->where('support.id', '=', $request->id);
+        }
+
+        if (!empty($request->user_id)) {
+            $return->where('support.user_id', '=', $request->user_id);
+        }
+
+        if (!empty($request->title)) {
+            $return->where('support.title', 'like', '%' . $request->title . '%');
+        }
+
+        if (!empty($request->status)) {
+            $status = $request->status == '1000' ? 0 : $request->status;
+            $return->where('support.status', '=', $status);
+        }
+
+        return $return->paginate(20); // Re-add pagination
     }
+
 
     public function user(){
         return $this->belongsTo(User::class, 'user_id');
