@@ -21,7 +21,7 @@
                             <div class="row">
                                 <div class="col-sm-2">
                                     <div class="mb-3">
-                                        <label for="">ID</label>
+                                        <label class="form-label">ID</label>
                                         <input type="text" name="id" class="form-control"
                                             value="{{ Request()->id }}" placeholder="Enter ID">
                                     </div>
@@ -29,7 +29,7 @@
 
                                 <div class="col-sm-3">
                                     <div class="mb-3">
-                                        <label for="">Country Name</label>
+                                        <label class="form-label">Country Name</label>
                                         <input type="text" name="country_name" class="form-control"
                                             value="{{ Request()->country_name }}" placeholder="Enter Country Name">
                                     </div>
@@ -37,7 +37,7 @@
 
                                 <div class="col-sm-3">
                                     <div class="mb-3">
-                                        <label for="">State Name</label>
+                                        <label class="form-label">State Name</label>
                                         <input type="text" name="state_name" class="form-control"
                                             value="{{ Request()->state_name }}" placeholder="Enter State Name">
                                     </div>
@@ -45,7 +45,7 @@
 
                                 <div class="col-sm-3">
                                     <div class="mb-3">
-                                        <label for="">City Name</label>
+                                        <label class="form-label">City Name</label>
                                         <input type="text" name="city_name" class="form-control"
                                             value="{{ Request()->city_name }}" placeholder="Enter City Name">
                                     </div>
