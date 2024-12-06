@@ -9,9 +9,11 @@ use App\Models\SupportReplyModel;
 
 class SupportController extends Controller
 {
-    public function support(Request $request){
+    public function support(Request $request)
+    {
         $getRecord = SupportModel::getSupportList($request);
-        $data['getUser'] = $getRecord;
+        $data['user'] = $getRecord;
+        $data['getUser'] = User::get();
         return view('admin.support.list', $data);
     }
 }
