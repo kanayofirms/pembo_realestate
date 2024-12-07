@@ -28,4 +28,14 @@ class SupportController extends Controller
         return view('admin.support.reply', $data);
     }
 
+    public function change_support_status(Request $request)
+    {
+        $record = SupportModel::find($request->id);
+        $record->status = $request->status;
+        $record->save();
+
+        $json['success'] = true;
+        echo json_encode($json);
+    }
+
 }
