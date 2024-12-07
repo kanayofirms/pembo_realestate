@@ -30,8 +30,13 @@ class SupportModel extends Model
             $return->where('support.title', 'like', '%' . $request->title . '%');
         }
 
-        if (!empty($request->status)) {
-            $status = $request->status == '1000' ? 0 : $request->status;
+        // if (!empty($request->status)) {
+        //     $status = $request->status == '1000' ? 0 : $request->status;
+        //     $return->where('support.status', '=', $status);
+        // }
+
+        if ($request->filled('status')) {
+            $status = ($request->status === '1000') ? 0 : $request->status;
             $return->where('support.status', '=', $status);
         }
 
@@ -39,7 +44,13 @@ class SupportModel extends Model
     }
 
 
-    public function user(){
+    public function user()
+    {
         return $this->belongsTo(User::class, 'user_id');
+    }
+
+    public function getSupportReply()
+    {
+        return $this->hasMany(SupportReplyModel::class, 'support_id');
     }
 }
