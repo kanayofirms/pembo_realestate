@@ -16,4 +16,16 @@ class SupportController extends Controller
         $data['getUser'] = User::get();
         return view('admin.support.list', $data);
     }
+
+    public function reply($id)
+    {
+        $getRecord = SupportModel::find($id); // Simplified to fetch the record by ID.
+        if (!$getRecord) {
+            abort(404, 'Support record not found.');
+        }
+
+        $data['edit'] = $getRecord;
+        return view('admin.support.reply', $data);
+    }
+
 }
