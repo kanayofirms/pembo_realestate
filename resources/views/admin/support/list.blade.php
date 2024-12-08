@@ -84,8 +84,9 @@
                             <h4 class="card-title">Support List</h4>
                             <div class="d-flex align-items-center">
 
-                                <a href="{{ url('admin/support/add') }}" class="btn btn-primary">
-                                    Add Support
+                                <a href="" class="btn btn-danger"
+                                    onclick="return confirm('Are You Sure You Want to Delete?');" id="getDeleteUrl">
+                                    Delete
                                 </a>
                             </div>
                         </div>
@@ -94,6 +95,7 @@
                             <table class="table table-bordered">
                                 <thead>
                                     <tr>
+                                        <th>Delete</th>
                                         <th>ID</th>
                                         <th>Username</th>
                                         <th>Title</th>
@@ -108,6 +110,10 @@
                                 <tbody>
                                     @forelse ($user as $value)
                                         <tr class="table-info text-dark">
+                                            <td>
+                                                <input type="checkbox" value="{{ $value->id }}"
+                                                    class="delete-all-option">
+                                            </td>
                                             <td>{{ $value->id }}</td>
                                             <td>{{ !empty($value->user->name) ? $value->user->name : '' }}</td>
                                             <td>{{ $value->title }}</td>
@@ -143,10 +149,6 @@
                                                 <a class="btn btn-primary"
                                                     href="{{ url('admin/support/reply/' . $value->id) }}">Reply</span></a>
 
-                                                <a class="btn btn-danger"
-                                                    href="{{ url('admin/support/delete/' . $value->id) }}"
-                                                    onclick="return confirm('Are you sure you want to delete?')"><span
-                                                        class="">Delete</span></a>
                                             </td>
 
                                         </tr>
