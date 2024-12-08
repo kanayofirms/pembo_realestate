@@ -1,6 +1,7 @@
 @extends('admin.admin_dashboard')
 @section('admin')
     <div class="page-content">
+        @include('_message')
         <nav class="page-breadcrumb">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="{{ url('admin/support') }}">Reply</a></li>
@@ -34,7 +35,7 @@
                                             <div class="heading">
                                                 <a href="#">{{ $value->user->name ?? '' }}</a>
                                                 <span
-                                                    class="date">{{ date('d-m-Y', strtotime($value->created_at)) }}</span>
+                                                    class="date">{{ date('d-m-Y H:s A', strtotime($value->created_at)) }}</span>
                                             </div>
                                             {{ $value->description }}
                                         </div>
