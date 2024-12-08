@@ -13,6 +13,31 @@ class NotificationController extends Controller
     {
         return view('notifications.list');
     }
+
+    public function notification_list($type)
+    {
+        switch ($type) {
+            case 'success':
+                return back()->with("success", "User Created Successfully.");
+                break;
+
+            case 'info':
+                return back()->with("info", "User Updated Successfully.");
+                break;
+
+            case 'warning':
+                return back()->with("warning", "User cannot access page");
+                break;
+
+            case 'error':
+                return back()->with("error", "This is testing error");
+                break;
+
+            default:
+
+                break;
+        }
+    }
     public function notification_index(Request $request)
     {
         $data['getRecord'] = User::get();
