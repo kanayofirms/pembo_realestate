@@ -43,6 +43,7 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::get('admin/support/reply/{id}', [SupportController::class, 'reply']);
     Route::post('admin/support/reply/{id}', [SupportController::class, 'reply_store']);
     Route::get('admin/change_support_status', [SupportController::class, 'change_support_status']);
+    Route::get('admin/support/status_update/{id}', [SupportController::class, 'status_update']);
 
     // Discount Code
     Route::get('admin/discount_code', [DiscountCodeController::class, 'discount_code']);
