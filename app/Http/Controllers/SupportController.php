@@ -7,6 +7,7 @@ use App\Models\User;
 use App\Models\SupportModel;
 use App\Models\SupportReplyModel;
 use Auth;
+use DB;
 
 class SupportController extends Controller
 {
@@ -52,5 +53,21 @@ class SupportController extends Controller
             ->with('success', 'Support ticket has been successfully updated. You can now review the changes.');
 
     }
+
+    public function status_update($id, Request $request)
+    {
+        $product = DB::table('support')->select('status')->where('id', '=', $id)->first();
+
+        if ($product) {
+            $status = $product->status == '1' ? '0' : '1';
+
+            DB::table('support')->where('id', $id)->update(['status' => $status]);
+
+            return redirect()->back()->with('success', 'Support ticket status updated successfully.');
+        }
+
+        return redirect()->back()->with('error', 'Support ticket not found.');
+    }
+
 
 }
