@@ -247,3 +247,4 @@ Route::get('notification_list', [NotificationController::class, 'index_notificat
 Route::get('notification_list/{type}', [NotificationController::class, 'notification_list'])->name('notification_list');
 
 Route::get('item/create', [ItemController::class, 'create']);
+Route::get('item/search', [ItemController::class, 'search']);
