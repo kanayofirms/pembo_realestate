@@ -101,6 +101,20 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.2/bootstrap3-typeahead.min.js"></script>
 
     @yield('script')
+
+    <script type="text/javascript">
+        $('.delete-all-option').change(function() {
+            var total = '';
+            $('.delete-all-option').each(function() {
+                if (this.checked) {
+                    var id = $(this).val();
+                    total += id + ',';
+                }
+            });
+            var url = '{{ url('admin/support/delete_multi_item?id=') }}' + total;
+            $('#getDeleteUrl').attr('href', url);
+        });
+    </script>
     <script type="text/javascript">
         tinymce.init({
             selector: '.editor',
