@@ -14,8 +14,17 @@ use Mail;
 
 class AdminController extends Controller
 {
+    public function generate_UUID(Request $request)
+    {
+
+        // Generate the UUID
+        // $uuid = Str::uuid()->toString();
+        $uuid = Str::orderedUuid()->toString();
 
 
+        // Option 1: Return the UUID in the response
+        return response()->json(['uuid' => $uuid]);
+    }
     public function change_password(Request $request)
     {
         return view('admin.change_password.update');
