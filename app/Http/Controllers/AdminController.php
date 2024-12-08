@@ -24,6 +24,10 @@ class AdminController extends Controller
 
         // Option 1: Return the UUID in the response
         return response()->json(['uuid' => $uuid]);
+
+        // Option 2: Store the UUID in the database (example for a model named "ExampleModel")
+        // ExampleModel::create(['uuid' => $uuid]);
+        // return response()->json(['message' => 'UUID stored successfully', 'uuid' => $uuid]);
     }
     public function change_password(Request $request)
     {
