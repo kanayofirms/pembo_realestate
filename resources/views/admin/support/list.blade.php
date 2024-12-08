@@ -99,6 +99,7 @@
                                         <th>Title</th>
                                         <th>Description</th>
                                         <th>Status</th>
+                                        <th>On/Off</th>
                                         <th>Created At</th>
                                         <th>Updated At</th>
                                         <th>Action</th>
@@ -123,6 +124,15 @@
                                                     </select>
                                                 @else
                                                     {{ $value->status == '1' ? 'Closed' : 'Open' }}
+                                                @endif
+                                            </td>
+                                            <td>
+                                                @if ($value->status == 0)
+                                                    <a href="{{ url('admin/support/status_update/' . $value->id) }}"
+                                                        class="btn btn-success">On</a>
+                                                @else
+                                                    <a href="{{ url('admin/support/status_update/' . $value->id) }}"
+                                                        class="btn btn-danger">Off</a>
                                                 @endif
                                             </td>
                                             <td>{{ date('d-m-Y H:s A', strtotime($value->created_at)) }}</td>
