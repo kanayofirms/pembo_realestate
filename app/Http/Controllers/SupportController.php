@@ -11,6 +11,20 @@ use DB;
 
 class SupportController extends Controller
 {
+    public function delete_multi_item(Request $request)
+    {
+        if (!empty($request->id)) {
+            $option = explode(',', $request->id);
+            foreach ($option as $id) {
+                if (!empty($id)) {
+                    $getrecord = SupportModel::find($id);
+                    $getrecord->delete();
+                }
+            }
+        }
+        return redirect()->back()->with('success', 'Selected records have been successfully deleted.');
+    }
+
     public function support(Request $request)
     {
         $getRecord = SupportModel::getSupportList($request);
@@ -68,6 +82,5 @@ class SupportController extends Controller
 
         return redirect()->back()->with('error', 'Support ticket not found.');
     }
-
 
 }
