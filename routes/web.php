@@ -239,3 +239,5 @@ Route::get('set_new_password/{token}', [AdminController::class, 'set_new_passwor
 Route::post('set_new_password/{token}', [AdminController::class, 'set_new_password_post']);
 
 Route::get('admin/login', [AdminController::class, 'AdminLogin'])->name('admin.login');
+
+Route::get('generate/UUID', [AdminController::class, 'generate_UUID']);
