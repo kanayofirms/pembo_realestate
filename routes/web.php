@@ -18,6 +18,7 @@ use App\Http\Controllers\TransactionsController;
 use App\Http\Controllers\FullCalendarController;
 use App\Http\Controllers\DiscountCodeController;
 use App\Http\Controllers\ItemController;
+use App\Http\Controllers\ProductCartController;
 
 use Illuminate\Support\Facades\Route;
 
@@ -38,6 +39,9 @@ Route::middleware('auth')->group(function () {
 require __DIR__ . '/auth.php';
 
 Route::middleware(['auth', 'role:admin'])->group(function () {
+
+    // Product Cart
+    Route::get('admin/product_cart', [ProductCartController::class, 'admin_product_cart']);
 
     // Support Start
     Route::get('admin/support', [SupportController::class, 'support']);
