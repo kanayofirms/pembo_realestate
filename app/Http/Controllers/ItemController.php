@@ -19,4 +19,12 @@ class ItemController extends Controller
 
         return ItemModel::create($input);
     }
+
+    public function search()
+    {
+        $item = ItemModel::whereJsonContains('details->tags', 'White')->get();
+        // $item = ItemModel::get(); All Record get!
+
+        return $item;
+    }
 }
