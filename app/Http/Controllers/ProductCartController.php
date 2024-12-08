@@ -11,4 +11,9 @@ class ProductCartController extends Controller
     {
         return view('admin.product_cart.list');
     }
+
+    public function admin_product_add()
+    {
+        return view('admin.product_cart.add');
+    }
 }
