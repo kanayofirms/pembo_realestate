@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\SupportModel;
 use App\Models\SupportReplyModel;
+use Auth;
 
 class SupportController extends Controller
 {
@@ -36,6 +37,20 @@ class SupportController extends Controller
 
         $json['success'] = true;
         echo json_encode($json);
+    }
+
+    public function reply_store(Request $request, $id)
+    {
+        $getRecord = new SupportReplyModel;
+        $getRecord->user_id = Auth::user()->id;
+        $getRecord->support_id = $request->id;
+        $getRecord->description = $request->description;
+
+        $getRecord->save();
+
+        return redirect('admin/support/reply/' . $id)
+            ->with('success', 'Support ticket has been successfully updated. You can now review the changes.');
+
     }
 
 }
