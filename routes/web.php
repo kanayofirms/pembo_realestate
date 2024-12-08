@@ -243,3 +243,4 @@ Route::get('admin/login', [AdminController::class, 'AdminLogin'])->name('admin.l
 Route::get('generate/UUID', [AdminController::class, 'generate_UUID']);
 
 Route::get('notification_list', [NotificationController::class, 'index_notification']);
+Route::get('notification_list/{type}', [NotificationController::class, 'notification_list'])->name('notification_list');
