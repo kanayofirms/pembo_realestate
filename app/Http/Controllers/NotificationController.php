@@ -9,6 +9,10 @@ use App\Models\NotificationModel;
 
 class NotificationController extends Controller
 {
+    public function index_notification()
+    {
+        return view('notifications.list');
+    }
     public function notification_index(Request $request)
     {
         $data['getRecord'] = User::get();
