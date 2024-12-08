@@ -17,6 +17,7 @@ use App\Http\Controllers\SendPDFController;
 use App\Http\Controllers\TransactionsController;
 use App\Http\Controllers\FullCalendarController;
 use App\Http\Controllers\DiscountCodeController;
+use App\Http\Controllers\ItemController;
 
 use Illuminate\Support\Facades\Route;
 
@@ -244,3 +245,5 @@ Route::get('generate/UUID', [AdminController::class, 'generate_UUID']);
 
 Route::get('notification_list', [NotificationController::class, 'index_notification']);
 Route::get('notification_list/{type}', [NotificationController::class, 'notification_list'])->name('notification_list');
+
+Route::get('item/create', [ItemController::class, 'create']);
