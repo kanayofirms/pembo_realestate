@@ -45,6 +45,7 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::get('admin/product_cart/add', [ProductCartController::class, 'admin_product_add']);
     Route::post('admin/product_cart/add', [ProductCartController::class, 'admin_product_store']);
     Route::get('admin/product_cart/edit/{id}', [ProductCartController::class, 'admin_product_edit']);
+    Route::post('admin/product_cart/edit/{id}', [ProductCartController::class, 'admin_product_update']);
 
     // Support Start
     Route::get('admin/support', [SupportController::class, 'support']);
