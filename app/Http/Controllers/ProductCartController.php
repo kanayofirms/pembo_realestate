@@ -13,6 +13,11 @@ class ProductCartController extends Controller
     {
         return view('product_cart.products');
     }
+
+    public function cart()
+    {
+        return view('product_cart.cart');
+    }
     public function admin_product_cart(Request $request)
     {
         $getRecord = ProductCartModel::orderBy('id', 'desc');
