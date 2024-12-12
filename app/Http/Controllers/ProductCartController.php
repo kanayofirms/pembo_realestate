@@ -11,7 +11,8 @@ class ProductCartController extends Controller
 
     public function index()
     {
-        return view('product_cart.products');
+        $products = ProductCartModel::all();
+        return view('product_cart.products', compact('products'));
     }
 
     public function cart()
