@@ -12,7 +12,7 @@
         </nav>
 
         {{-- Search Start --}}
-        {{-- <div class="row">
+        <div class="row">
             <div class="col-lg-12 stretch-card">
                 <div class="card">
                     <div class="card-body">
@@ -29,36 +29,47 @@
 
                                 <div class="col-sm-3">
                                     <div class="mb-3">
-                                        <label class="form-label">Country Name</label>
-                                        <input type="text" name="country_name" class="form-control"
-                                            value="{{ Request()->country_name }}" placeholder="Enter Country Name">
+                                        <label class="form-label">Product Name</label>
+                                        <input type="text" name="name" class="form-control"
+                                            value="{{ Request()->name }}" placeholder="Enter Product Name">
                                     </div>
                                 </div>
 
                                 <div class="col-sm-3">
                                     <div class="mb-3">
-                                        <label class="form-label">State Name</label>
-                                        <input type="text" name="state_name" class="form-control"
-                                            value="{{ Request()->state_name }}" placeholder="Enter State Name">
+                                        <label class="form-label">Price</label>
+                                        <input type="text" name="price" class="form-control"
+                                            value="{{ Request()->price }}" placeholder="Enter Price">
                                     </div>
                                 </div>
 
-                                <div class="col-sm-3">
+                                <div class="col-sm-2">
                                     <div class="mb-3">
-                                        <label class="form-label">City Name</label>
-                                        <input type="text" name="city_name" class="form-control"
-                                            value="{{ Request()->city_name }}" placeholder="Enter City Name">
+                                        <label class="form-label">Created At</label>
+                                        <input type="date" name="created_at" class="form-control"
+                                            value="{{ Request()->created_at }}">
                                     </div>
                                 </div>
+
+                                <div class="col-sm-2">
+                                    <div class="mb-3">
+                                        <label class="form-label">Updated At</label>
+                                        <input type="date" name="updated_at" class="form-control"
+                                            value="{{ Request()->updated_at }}">
+                                    </div>
+                                </div>
+
                             </div>
-                            <button type="submit" class="btn btn-primary">Search</button>
-                            <a href="{{ url('admin/city') }}" class="btn btn-danger">Reset</a>
+                            <div style="text-align: right;">
+                                <button type="submit" class="btn btn-primary">Search</button>
+                                <a href="{{ url('admin/product_cart') }}" class="btn btn-danger">Reset</a>
+                            </div>
                         </form>
                     </div>
                 </div>
             </div>
         </div>
-        <br> --}}
+        <br>
         {{-- Search End --}}
 
         <div class="row">
@@ -91,39 +102,33 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {{-- @forelse ($getRecord as $value)
+                                    @php
+                                        $totalPrice = 0;
+                                    @endphp
+                                    @forelse ($getRecord as $value)
+                                        @php
+                                            $totalPrice = $totalPrice + $value->price;
+                                        @endphp
                                         <tr class="table-info text-dark">
                                             <td>{{ $value->id }}</td>
-                                            <td>{{ $value->country_name }}</td>
-                                            <td>{{ $value->state_name }}</td>
-                                            <td>{{ $value->city_name }}</td>
-                                            <td>{{ date('d-m-Y', strtotime($value->created_at)) }}</td>
-                                            <td>{{ date('d-m-Y', strtotime($value->updated_at)) }}</td>
+                                            <td>{{ $value->name }}</td>
+                                            <td>{{ $value->description }}</td>
+                                            <td>
+                                                <img src="{{ asset('product/' . $value->image) }}" alt="product_image"
+                                                    style="width: 6.5vw; height: 14.5vh;">
+                                            </td>
+                                            <td>{{ $value->price }}</td>
+                                            <td>{{ date('d-m-Y H:s:i', strtotime($value->created_at)) }}</td>
+                                            <td>{{ date('d-m-Y H:s:i', strtotime($value->updated_at)) }}</td>
 
                                             <td>
 
-                                                <a class="dropdown-item"
-                                                    href="{{ url('admin/city/edit/' . $value->id) }}"><svg
-                                                        xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                                        viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                                                        class="feather feather-edit-2 icon-sm me-2">
-                                                        <path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z">
-                                                        </path>
-                                                    </svg> <span class="">Edit</span></a>
+                                                <a class="btn btn-primary"
+                                                    href="{{ url('admin/product_cart/edit/' . $value->id) }}">Edit</a>
 
-                                                <a class="dropdown-item"
-                                                    href="{{ url('admin/city/delete/' . $value->id) }}"
-                                                    onclick="return confirm('Are you sure you want to delete?')"><svg
-                                                        xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                                        viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                                                        class="feather feather-trash icon-sm me-2">
-                                                        <polyline points="3 6 5 6 21 6"></polyline>
-                                                        <path
-                                                            d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2">
-                                                        </path>
-                                                    </svg> <span class="">Delete</span></a>
+                                                <a class="btn btn-danger"
+                                                    href="{{ url('admin/product_cart/delete/' . $value->id) }}"
+                                                    onclick="return confirm('Are you sure you want to delete?')">Delete</a>
                                             </td>
 
                                         </tr>
@@ -131,12 +136,20 @@
                                         <tr>
                                             <td colspan="100%">No Record Found.</td>
                                         </tr>
-                                    @endforelse --}}
+                                    @endforelse
+                                    @if (!empty($totalPrice))
+                                        {{-- if the db table is empty remove record --}}
+                                        <tr>
+                                            <th colspan="4">Total Price (Amount)</th>
+                                            <td>{{ number_format($totalPrice, 2) }}</td>
+                                            <th colspan="4"></th>
+                                        </tr>
+                                    @endif
                                 </tbody>
                             </table>
                         </div>
                         <div style="padding: 20px; float: right;">
-                            {{-- {!! $getRecord->appends(Illuminate\Support\Facades\Request::except('page'))->links() !!} --}}
+                            {!! $getRecord->appends(Illuminate\Support\Facades\Request::except('page'))->links() !!}
 
                         </div>
 
