@@ -8,6 +8,11 @@ use Str;
 
 class ProductCartController extends Controller
 {
+
+    public function index()
+    {
+        return view('product_cart.products');
+    }
     public function admin_product_cart(Request $request)
     {
         $getRecord = ProductCartModel::orderBy('id', 'desc');
@@ -83,5 +88,13 @@ class ProductCartController extends Controller
         }
         $save->save();
         return redirect('admin/product_cart')->with('success', "Product Successfully Updated!");
+    }
+
+    public function admin_product_delete($id)
+    {
+        $recordDelete = ProductCartModel::find($id);
+        $recordDelete->delete();
+
+        return redirect('admin/product_cart')->with('success', "Product Successfully Deleted From Cart.");
     }
 }
