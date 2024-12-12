@@ -60,4 +60,10 @@ class ProductCartController extends Controller
         $save->save();
         return redirect('admin/product_cart')->with('success', "Product Successfully Added!");
     }
+
+    public function admin_product_edit($id)
+    {
+        $data['getRecord'] = ProductCartModel::find($id);
+        return view('admin.product_cart.edit', $data);
+    }
 }
