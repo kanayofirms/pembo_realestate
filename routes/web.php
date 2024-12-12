@@ -46,6 +46,7 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::post('admin/product_cart/add', [ProductCartController::class, 'admin_product_store']);
     Route::get('admin/product_cart/edit/{id}', [ProductCartController::class, 'admin_product_edit']);
     Route::post('admin/product_cart/edit/{id}', [ProductCartController::class, 'admin_product_update']);
+    Route::get('admin/product_cart/delete/{id}', [ProductCartController::class, 'admin_product_delete']);
 
     // Support Start
     Route::get('admin/support', [SupportController::class, 'support']);
@@ -256,3 +257,7 @@ Route::get('notification_list/{type}', [NotificationController::class, 'notifica
 
 Route::get('item/create', [ItemController::class, 'create']);
 Route::get('item/search', [ItemController::class, 'search']);
+
+// Product Cart Start
+Route::get('product_cart', [ProductCartController::class, 'index']);
+// Product Cart End
