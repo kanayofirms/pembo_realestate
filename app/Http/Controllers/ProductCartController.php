@@ -10,7 +10,32 @@ class ProductCartController extends Controller
 {
     public function admin_product_cart(Request $request)
     {
-        return view('admin.product_cart.list');
+        $getRecord = ProductCartModel::orderBy('id', 'desc');
+
+        // Search Start
+        if (!empty($request->id)) {
+            $getRecord = $getRecord->where('product_cart.id', '=', $request->id);
+        }
+
+        if (!empty($request->name)) {
+            $getRecord = $getRecord->where('product_cart.name', 'like', '%' . $request->name . '%');
+        }
+
+        if (!empty($request->price)) {
+            $getRecord = $getRecord->where('product_cart.price', 'like', '%' . $request->price . '%');
+        }
+
+        if (!empty($request->created_at)) {
+            $getRecord = $getRecord->where('product_cart.created_at', 'like', '%' . $request->created_at . '%');
+        }
+
+        if (!empty($request->updated_at)) {
+            $getRecord = $getRecord->where('product_cart.updated_at', 'like', '%' . $request->updated_at . '%');
+        }
+
+        $getRecord = $getRecord->paginate(40);
+        $data['getRecord'] = $getRecord;
+        return view('admin.product_cart.list', $data);
     }
 
     public function admin_product_add()
