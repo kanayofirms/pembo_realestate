@@ -43,6 +43,7 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     // Product Cart
     Route::get('admin/product_cart', [ProductCartController::class, 'admin_product_cart']);
     Route::get('admin/product_cart/add', [ProductCartController::class, 'admin_product_add']);
+    Route::post('admin/product_cart/add', [ProductCartController::class, 'admin_product_store']);
 
     // Support Start
     Route::get('admin/support', [SupportController::class, 'support']);
