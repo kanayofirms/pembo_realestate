@@ -260,4 +260,6 @@ Route::get('item/search', [ItemController::class, 'search']);
 
 // Product Cart Start
 Route::get('product_cart', [ProductCartController::class, 'index']);
+Route::get('cart', [ProductCartController::class, 'cart'])->name('cart');
+
 // Product Cart End
