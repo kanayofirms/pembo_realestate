@@ -153,4 +153,37 @@ class ProductCartController extends Controller
         return response()->json(['error' => 'Invalid cart item.'], 404);
     }
 
+    public function remove(Request $request)
+    {
+        // Validate the request
+        $request->validate([
+            'id' => 'required|integer',
+        ]);
+
+        // Get the cart from the session
+        $cart = session()->get('cart');
+
+        // Check if the cart item exists
+        if (isset($cart[$request->id])) {
+            // Remove the item from the cart
+            unset($cart[$request->id]);
+
+            // Update the session with the modified cart
+            session()->put('cart', $cart);
+
+            // Flash a success message
+            session()->flash('success', "Product Successfully Removed from cart.");
+
+            // Return success response
+            return response()->json([
+                'success' => 'Product successfully removed from cart.',
+                'cart' => $cart, // Optional: You can return the updated cart here
+            ]);
+        }
+
+        // If the item does not exist, return an error response
+        return response()->json(['error' => 'Item not found in cart.'], 404);
+    }
+
+
 }
