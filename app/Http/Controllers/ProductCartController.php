@@ -20,24 +20,6 @@ class ProductCartController extends Controller
         return view('product_cart.cart');
     }
 
-    public function addToCart($id)
-    {
-        $product = ProductCartModel::findOrFail($id);
-        $cart = session()->get('cart', []);
-        if (isset($cart[$id])) {
-            $cart[$id]['quantity']++;
-        } else {
-            $cart[$id] = [
-                "name" => $product->name,
-                "quantity" => 1,
-                "price" => $product->price,
-                "image" => $product->image
-            ];
-        }
-        session()->put('cart', $cart);
-
-        return redirect()->back()->with('success', "Product Successfully Added to Cart.");
-    }
     public function admin_product_cart(Request $request)
     {
         $getRecord = ProductCartModel::orderBy('id', 'desc');
@@ -122,4 +104,53 @@ class ProductCartController extends Controller
 
         return redirect('admin/product_cart')->with('success', "Product Successfully Deleted From Cart.");
     }
+
+    public function addToCart($id)
+    {
+        $product = ProductCartModel::findOrFail($id);
+        $cart = session()->get('cart', []);
+        if (isset($cart[$id])) {
+            $cart[$id]['quantity']++;
+        } else {
+            $cart[$id] = [
+                "name" => $product->name,
+                "quantity" => 1,
+                "price" => $product->price,
+                "image" => $product->image
+            ];
+        }
+        session()->put('cart', $cart);
+
+        return redirect()->back()->with('success', "Product Successfully Added to Cart.");
+    }
+    public function update(Request $request)
+    {
+        // Validate the request
+        $request->validate([
+            'id' => 'required|integer',
+            'quantity' => 'required|integer|min:1',
+        ]);
+
+        // Get the cart from the session
+        $cart = session()->get('cart');
+
+        // Check if the cart exists and the item is in the cart
+        if ($cart && isset($cart[$request->id])) {
+            // Update the quantity of the product in the cart
+            $cart[$request->id]["quantity"] = $request->quantity;
+
+            // Save the updated cart back to the session
+            session()->put('cart', $cart);
+
+            // Flash a success message
+            session()->flash('success', "Cart Successfully Updated.");
+
+            // Return success response (useful for AJAX or APIs)
+            return response()->json(['success' => 'Cart successfully updated.']);
+        }
+
+        // If the item does not exist, return an error
+        return response()->json(['error' => 'Invalid cart item.'], 404);
+    }
+
 }
