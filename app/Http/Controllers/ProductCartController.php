@@ -19,6 +19,25 @@ class ProductCartController extends Controller
     {
         return view('product_cart.cart');
     }
+
+    public function addToCart($id)
+    {
+        $product = ProductCartModel::findOrFail($id);
+        $cart = session()->get('cart', []);
+        if (isset($cart[$id])) {
+            $cart[$id]['quantity']++;
+        } else {
+            $cart[$id] = [
+                "name" => $product->name,
+                "quantity" => 1,
+                "price" => $product->price,
+                "image" => $product->image
+            ];
+        }
+        session()->put('cart', $cart);
+
+        return redirect()->back()->with('success', "Product Successfully Added to Cart.");
+    }
     public function admin_product_cart(Request $request)
     {
         $getRecord = ProductCartModel::orderBy('id', 'desc');
