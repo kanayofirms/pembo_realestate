@@ -101,5 +101,42 @@
                 });
             });
         });
+
+        $(".remove-from-cart").click(function(e) {
+            e.preventDefault();
+
+            var ele = $(this);
+
+            // Confirm before removing item from cart
+            if (confirm("Are You Sure You Want To Delete?")) {
+                $.ajax({
+                    url: '{{ route('remove.from.cart') }}',
+                    method: "DELETE", // Use DELETE method
+                    data: {
+                        _token: '{{ csrf_token() }}', // Include CSRF token
+                        id: ele.parents("tr").attr("data-id"), // Product ID from the data-id attribute
+                    },
+                    success: function(response) {
+                        // Handle the response, e.g., removing the row or updating the cart total
+                        if (response.success) {
+                            // Remove the row from the cart table
+                            ele.parents("tr").remove();
+
+                            // Optionally, update the cart total (if you return total from the controller)
+                            $(".cart-total").text(response.cart_total);
+
+                            // Show a success message
+                            window.location.reload();
+                            // Optional: You can replace this with a toastr or custom message
+                        } else {
+                            alert(response.error); // Optional: Error handling
+                        }
+                    },
+                    error: function(xhr) {
+                        alert("An error occurred while removing the item. Please try again.");
+                    }
+                });
+            }
+        });
     </script>
 @endsection
