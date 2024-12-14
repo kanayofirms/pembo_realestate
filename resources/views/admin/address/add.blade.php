@@ -3,7 +3,7 @@
     <div class="page-content">
         <nav class="page-breadcrumb">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="{{ url('admin/countries') }}">Address</a></li>
+                <li class="breadcrumb-item"><a href="{{ url('admin/address') }}">Address</a></li>
                 <li class="breadcrumb-item active" aria-current="page">Add Address</li>
             </ol>
         </nav>

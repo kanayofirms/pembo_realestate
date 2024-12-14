@@ -3,7 +3,7 @@
     <div class="page-content">
         <nav class="page-breadcrumb">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="{{ url('admin/colour') }}">Blog</a></li>
+                <li class="breadcrumb-item"><a href="{{ url('admin/blog') }}">Blog</a></li>
                 <li class="breadcrumb-item active" aria-current="page">Add Blog</li>
             </ol>
         </nav>
