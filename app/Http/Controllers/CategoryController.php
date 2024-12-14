@@ -9,7 +9,8 @@ class CategoryController extends Controller
 {
     public function index(Request $request)
     {
-        return view('addMore');
+        $products = CategoryModel::paginate(20);
+        return view('addMore', compact('products'));
     }
 
     public function store(Request $request)
