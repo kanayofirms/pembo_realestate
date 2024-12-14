@@ -19,6 +19,7 @@ use App\Http\Controllers\FullCalendarController;
 use App\Http\Controllers\DiscountCodeController;
 use App\Http\Controllers\ItemController;
 use App\Http\Controllers\ProductCartController;
+use App\Http\Controllers\CategoryController;
 
 use Illuminate\Support\Facades\Route;
 
@@ -265,3 +266,5 @@ Route::get('add.to.cart/{id}', [ProductCartController::class, 'addToCart'])->nam
 Route::patch('update-cart', [ProductCartController::class, 'update'])->name('update.cart');
 Route::delete('remove-from-cart', [ProductCartController::class, 'remove'])->name('remove.from.cart');
 // Product Cart End
+
+Route::get('add-more', [CategoryController::class, 'index']);
