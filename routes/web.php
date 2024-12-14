@@ -268,3 +268,5 @@ Route::delete('remove-from-cart', [ProductCartController::class, 'remove'])->nam
 // Product Cart End
 
 Route::get('add-more', [CategoryController::class, 'index']);
+
+Route::post('add-more', [CategoryController::class, 'store'])->name('add-more.store');
