@@ -97,6 +97,9 @@
         </div>
         <div class="row mt-3">
             <div class="col-md-10 offset-md-1">
+                @if (session('success'))
+                    <div class="alert alert-success">{{ session('success') }}</div>
+                @endif
                 @yield('content')
             </div>
         </div>
